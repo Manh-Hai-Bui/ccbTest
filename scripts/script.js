@@ -14,7 +14,7 @@ setTimeout(()=>{
   sdk.setSuperContent(JSON.stringify(newsletterJSON1, null, 2))
   console.log('Setting supercontent')
 
-  sdk.setContent(JSON.stringify(newsletterJSON1, null, 2))
+  sdk.setContent(`SET @JSONdata = ${JSON.stringify(newsletterJSON1, null, 2)}`)
   console.log('Setting setContent')
   
-  }, 3000);
+  }, 1000);
