@@ -11,10 +11,10 @@ console.log('Testing block')
 
 setTimeout(()=>{
   
-  sdk.setSuperContent(JSON.stringify(newsletterJSON1, null, 2))
+  sdk.setSuperContent(`${JSON.stringify(newsletterJSON1, null, 2)}`)
   console.log('Setting supercontent')
 
-  sdk.setContent(`SET @JSONdata = ${JSON.stringify(newsletterJSON1, null, 2)}`)
+  sdk.setContent(`SET @JsonData = ${JSON.stringify(newsletterJSON1, null, 2)}`)
   console.log('Setting setContent')
   
   }, 1000);
