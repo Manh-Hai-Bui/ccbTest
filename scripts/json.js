@@ -221,7 +221,7 @@ const newsletterJSON2 = [{
           "label" : "Text",
           "value": {
                       "de" : "Das Stadtbild Münchens wird von jahrhundertealte Bauwerken und zahlreichen Museen geprägt. Die bayerische Landeshauptstadt ist für das alljährliche Oktoberfest und ihre Bierhallen bekannt, darunter vor allem das 1589 eröffnete Hofbräuhaus. In der Altstadt am zentralen Marienplatz stehen Wahrzeichen wie das neugotische Neue Rathaus, dessen beliebtes Glockenspiel Melodien und Geschichten aus dem 16. Jahrhundert spielt.",
-                      "en" : "Munich's cityscape is characterized by centuries-old buildings and numerous museums. The Bavarian capital is known for the annual Oktoberfest and its beer halls, most notably the Hofbräuhaus, which opened in 1589. In the Old Town on the central Marienplatz, landmarks such as the neo-Gothic New Town Hall stand out, whose popular glockenspiel plays melodies and stories from the 16th century."
+                      "en" : "Munichs cityscape is characterized by centuries-old buildings and numerous museums. The Bavarian capital is known for the annual Oktoberfest and its beer halls, most notably the Hofbräuhaus, which opened in 1589. In the Old Town on the central Marienplatz, landmarks such as the neo-Gothic New Town Hall stand out, whose popular glockenspiel plays melodies and stories from the 16th century."
                   }
         },
       },
