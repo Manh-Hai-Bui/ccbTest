@@ -1,0 +1,18 @@
+%%[ /* Email Content Configurator */]%%
+%%[ 
+
+SET @locale = AttributeValue('locale')
+IF EMPTY(@locale) THEN
+      SET @locale = 'de'
+ENDIF
+
+SET @ccbDemoSubject = BuildRowsetFromJSON(@JsonData,CONCAT('$.subject.value.',@locale),1)
+SET @ccbDemoPreheader = BuildRowsetFromJSON(@JsonData,CONCAT('$.preheader.value.',@locale),1)
+
+SET @contentRows = BuildRowsetFromJson(@JsonData,'$.contentBlocks.[*]',1)
+SET @rowcount = rowcount(@contentRows)
+
+
+]%%
+
+%%=v(@rowcount)=%%
