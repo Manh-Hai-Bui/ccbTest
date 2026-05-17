@@ -1,12 +1,13 @@
 let sdk = new window.sfdc.BlockSDK({
 tabs: [/*{
-    key : "bauhausProductPicker",
-    name : "Bauhaus Product Picker",
+    key : "key",
+    name : "name",
     url : ""
 }*/]
 ,blockEditorWidth: 425
 });
 
+console.log('Testing block')
 
 setTimeout(()=>{
   
