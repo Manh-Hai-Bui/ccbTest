@@ -11,10 +11,10 @@ console.log('Testing block')
 
 setTimeout(()=>{
   
-  sdk.setSuperContent("<div>Test</div>")
+  sdk.setSuperContent(JSON.stringify(newsletterJSON1, null, 2))
   console.log('Setting supercontent')
 
-  sdk.setContent("<div>Test</div>")
+  sdk.setContent(JSON.stringify(newsletterJSON1, null, 2))
   console.log('Setting setContent')
   
   }, 3000);
