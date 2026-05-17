@@ -6,35 +6,63 @@ IF EMPTY(@locale) THEN
       SET @locale = 'de'
 ENDIF
 
-SET @ccbDemoSubject = BuildRowsetFromJSON(@JsonData,CONCAT('$.subject.value.',@locale),1)
-SET @ccbDemoPreheader = BuildRowsetFromJSON(@JsonData,CONCAT('$.preheader.value.',@locale),1)
+SET @ccbDemoSubjectField = field(row(BuildRowsetFromJSON(@JsonData,CONCAT('$.subject.value'),@locale),1), 1), 1)
+SET @ccbDemoPreheader = field(row(BuildRowsetFromJSON(@JsonData,CONCAT('$.preheader.value.',@locale),1), 1), 1)
+SET @ccbDemoTrackingId = field(row(BuildRowsetFromJSON(@JsonData,CONCAT('$.trackingId.value.',@locale),1), 1), 1)
+]%%
 
-SET @contentRows = BuildRowsetFromJson(@JsonData,'$.contentBlocks.[*]',1)
-SET @rowCount = rowcount(@contentRows)
+<br>ccbDemoSubject: %%=v(@ccbDemoSubject)=%%
+<br>ccbDemoPreheader: %%=v(@ccbDemoPreheader)=%%
+<br>ccbDemoTrackingId: %%=v(@ccbDemoTrackingId)=%%
 
-IF @rowCount > 0 then
+%%[
+SET @contentBlockRows = BuildRowsetFromJson(@JsonData,'$.contentBlocks.[*]',1)
+SET @contentBlockRowCount = rowcount(@contentBlockRows)
 
-    for @i = 1 to @rowCount do
+IF @contentBlockRowCount > 0 then
 
-      set @row = row(@lineItemRowset, @i)
-      set @sku = field(@row, "sku")
-      set @name = field(@row, "name")
-      set @url = field(@row, "url")
+    for @i = 1 to @contentBlockRowCount do
+
+      SET @contentBlockRow = row(@contentBlockRows, @i)
+      SET @isVisible = field(@contentBlockRow, "isVisible")
+      SET @contentBlockKey = field(@contentBlockRow, "contentBlockKey")
+
+      SET @contentRows = BuildRowsetFromJson(@JsonData,CONCAT('$.contentBlocks[', SUBTRACT(@i,1) ,'].content.[*]'),1)
+      SET @contentRowsCount = rowcount(@contentRows)
+      IF @contentRowsCount > 0 then
+
+            FOR @j = 1 TO @contentRowsCount DO
+                  SET @contentRow = row(@contentRows, @j)
+                  SET @ampScriptVar = field(@contentRow, "ampScriptVar")
+            NEXT @j
+
+      ENDIF
+
+      SET @content = field(row(BuildRowsetFromJSON(@JsonData,CONCAT('$.contentBlocks[', SUBTRACT(@i,1) ,'].content.[',SUBTRACT(@j,1),'].value.',@locale),1), 1), 1)
 
       ]%%
 
       <br><br>row: %%=v(@i)=%%
-      <br>sku: %%=v(@sku)=%%
-      <br>name: %%=v(@name)=%%
-      <br>url: %%=v(@url)=%%
+      <!--<br>isVisible: %%=v(@isVisible)=%%
+      <br>contentBlockKey: %%=v(@contentBlockKey)=%%
+      <br>ampScriptVar: %%=v(@ampScriptVar)=%%
+      <br>content: %%=v(@content)=%%-->
 
+      %%=ContentBlockByKey(@contentBlockKey)=%%
+ 
       %%[
 
     NEXT @i
+
+      /* Reset */
+      SET @isVisible = ""
+      SET @contentBlockKey = ""
+      SET @ampScriptVar = ""
+      SET @content = ""
 
 ENDIF
 
 
 ]%%
 
-%%=v(@rowcount)=%%
+<br>JSON: %%=v(@JsonData)=%%

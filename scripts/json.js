@@ -26,7 +26,7 @@ const newsletterJSON1 = {
             "content": [{
               "type": "input",
               "label" : "Image URL",
-              "ampScriptVar" : "teaserImageUrl1",
+              "ampScriptVar" : "teaserImageUrl",
               "value": 
                 {
                     "de" : "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/19d0f254-4986-4c81-b2f3-6b7bbe0eb5e9.png",
@@ -35,7 +35,7 @@ const newsletterJSON1 = {
             },{
               "type": "input",
               "label" : "Image alt text",
-              "ampScriptVar" : "imageAlt1",
+              "ampScriptVar" : "imageAlt",
               "value": {
                   "de" : "Willkommen in Berlin!",
                   "en" : "Welcome to Berlin"
@@ -53,7 +53,7 @@ const newsletterJSON1 = {
             "content": [{
                 "type": "input",
                 "label" : "H1 Text",
-                "ampScriptVar" : "h1_headline1",
+                "ampScriptVar" : "headline_h1",
                 "value": {
                       "de" : "Willkommen in Berlin",
                       "en" : "Welcome to Berlin"
@@ -73,7 +73,7 @@ const newsletterJSON1 = {
             "content": [{
                 "type": "input",
                 "label" : "Text",
-                "ampScriptVar" : "bodyText1",
+                "ampScriptVar" : "bodyText",
                 "value": {
                         "de" : "Berlin ist die Hauptstadt und ein Land der Bundesrepublik Deutschland.Die Großstadt ist mit rund 3,7 Millionen Einwohnern die bevölkerungsreichste und mit 891 Quadratkilometern die flächengrößte Gemeinde Deutschlands sowie die bevölkerungsreichste Stadt der Europäischen Union. In der Agglomeration Berlin leben mehr als 4,7 Millionen Menschen und in der Metropolregion Berlin-Brandenburg mehr als 6,2 Millionen. Der Stadtstaat besteht aus zwölf Bezirken. Neben den Flüssen Spree, Havel und Dahme befinden sich im Stadtgebiet kleinere Fließgewässer sowie zahlreiche Seen und Wälder.",
                         "en" : "Berlin is the capital and a state of the Federal Republic of Germany. With a population of approximately 3.7 million, it is Germany’s most populous municipality; with an area of 891 square kilometers, it is also Germany’s largest municipality by land area, as well as the most populous city in the European Union. More than 4.7 million people live in the Berlin metropolitan area, and more than 6.2 million in the Berlin-Brandenburg metropolitan region. The city-state consists of twelve districts. In addition to the Spree, Havel, and Dahme rivers, the city area includes smaller waterways as well as numerous lakes and forests."
@@ -111,7 +111,7 @@ const newsletterJSON1 = {
                 },
                 {
                 "type": "input",
-                "ampScriptVar" : "2coltext1_1",
+                "ampScriptVar" : "2coltext1",
                 "label" : "Image Description 1",
                 "value": {
                         "de" : "Stadt",
@@ -120,7 +120,7 @@ const newsletterJSON1 = {
                 },
                 {
                 "type": "input",
-                "ampScriptVar" : "2coltext2_1",
+                "ampScriptVar" : "2coltext2",
                 "label" : "Image Description 2",
                 "value": {
                         "de" : "Museen",
@@ -129,7 +129,7 @@ const newsletterJSON1 = {
                 },
                 {
                 "type": "input",
-                "ampScriptVar" : "2coltext3_1",
+                "ampScriptVar" : "2coltext3",
                 "label" : "Image Description 3",
                 "value": {
                         "de" : "Architektur",
