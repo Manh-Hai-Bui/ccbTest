@@ -95,19 +95,28 @@ const newsletterJSON1 = {
                 "type": "input",
                 "ampScriptVar" : "imageUrl1",
                 "label" : "Image 1",
-                "value": "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/8a46ac97-eb9a-4e40-b2cb-a0469c1d83c8.png",
+                "value": {
+                      "de" : "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/8a46ac97-eb9a-4e40-b2cb-a0469c1d83c8.png",
+                      "en" : "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/8a46ac97-eb9a-4e40-b2cb-a0469c1d83c8.png"
+                  },
                 },
                 {
                 "type": "input",
                 "ampScriptVar" : "imageUrl2",
                 "label" : "Image 2",
-                "value": "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/2eb093ba-3676-45d5-87f0-6a227058670b.png",
+                "value": {
+                      "de" : "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/2eb093ba-3676-45d5-87f0-6a227058670b.png",
+                      "en" : "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/2eb093ba-3676-45d5-87f0-6a227058670b.png"
+                  },
                 },
                 {
                 "type": "input",
                 "ampScriptVar" : "imageUrl3",
                 "label" : "Image 3",
-                "value": "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/089182d9-9f4e-477d-a750-fd569fe9750f.png",
+                "value": {
+                      "de" : "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/089182d9-9f4e-477d-a750-fd569fe9750f.png",
+                      "en" : "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/089182d9-9f4e-477d-a750-fd569fe9750f.png"
+                  },
                 },
                 {
                 "type": "input",

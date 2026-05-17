@@ -34,19 +34,27 @@ IF @contentBlockRowCount > 0 then
             FOR @j = 1 TO @contentRowsCount DO
                   SET @contentRow = row(@contentRows, @j)
                   SET @ampScriptVar = field(@contentRow, "ampScriptVar")
+                  /*SET @content = field(row(BuildRowsetFromJSON(@JsonData,CONCAT('$.contentBlocks[', SUBTRACT(@i,1) ,'].content[',SUBTRACT(@j,1),'].value.',@locale),1), 1), 1)*/
+                  ]%%
+                        <br>ampScriptVar: %%=v(@ampScriptVar)=%%
+                        <br>content: %%=v(@content)=%%
+                        <br>SUBTRACT I: %%=SUBTRACT(@i,1)=%%
+                        <br>SUBTRACT J: %%=SUBTRACT(@J,1)=%%
+
+                        <!--%%=TreatAsContent(Concat("%","%[SET @",@ampScriptVar," = '",@content,"']%","%"))=%%-->
+                  %%[
             NEXT @j
 
+            
       ENDIF
 
-      SET @content = field(row(BuildRowsetFromJSON(@JsonData,CONCAT('$.contentBlocks[', SUBTRACT(@i,1) ,'].content.[',SUBTRACT(@j,1),'].value.',@locale),1), 1), 1)
 
       ]%%
 
       <br><br>row: %%=v(@i)=%%
-      <!--<br>isVisible: %%=v(@isVisible)=%%
-      <br>contentBlockKey: %%=v(@contentBlockKey)=%%
-      <br>ampScriptVar: %%=v(@ampScriptVar)=%%
-      <br>content: %%=v(@content)=%%-->
+      <br>isVisible: %%=v(@isVisible)=%%
+      <!--<br>contentBlockKey: %%=v(@contentBlockKey)=%%-->
+      
 
       %%=ContentBlockByKey(@contentBlockKey)=%%
  
