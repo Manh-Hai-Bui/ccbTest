@@ -10,7 +10,29 @@ SET @ccbDemoSubject = BuildRowsetFromJSON(@JsonData,CONCAT('$.subject.value.',@l
 SET @ccbDemoPreheader = BuildRowsetFromJSON(@JsonData,CONCAT('$.preheader.value.',@locale),1)
 
 SET @contentRows = BuildRowsetFromJson(@JsonData,'$.contentBlocks.[*]',1)
-SET @rowcount = rowcount(@contentRows)
+SET @rowCount = rowcount(@contentRows)
+
+IF @rowCount > 0 then
+
+    for @i = 1 to @rowCount do
+
+      set @row = row(@lineItemRowset, @i)
+      set @sku = field(@row, "sku")
+      set @name = field(@row, "name")
+      set @url = field(@row, "url")
+
+      ]%%
+
+      <br><br>row: %%=v(@i)=%%
+      <br>sku: %%=v(@sku)=%%
+      <br>name: %%=v(@name)=%%
+      <br>url: %%=v(@url)=%%
+
+      %%[
+
+    NEXT @i
+
+ENDIF
 
 
 ]%%
