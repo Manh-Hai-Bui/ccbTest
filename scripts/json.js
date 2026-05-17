@@ -111,7 +111,7 @@ const newsletterJSON1 = {
                 },
                 {
                 "type": "input",
-                "ampScriptVar" : "2coltext1",
+                "ampScriptVar" : "3coltext1",
                 "label" : "Image Description 1",
                 "value": {
                         "de" : "Stadt",
@@ -120,7 +120,7 @@ const newsletterJSON1 = {
                 },
                 {
                 "type": "input",
-                "ampScriptVar" : "2coltext2",
+                "ampScriptVar" : "3coltext2",
                 "label" : "Image Description 2",
                 "value": {
                         "de" : "Museen",
@@ -129,7 +129,7 @@ const newsletterJSON1 = {
                 },
                 {
                 "type": "input",
-                "ampScriptVar" : "2coltext3",
+                "ampScriptVar" : "3coltext3",
                 "label" : "Image Description 3",
                 "value": {
                         "de" : "Architektur",
@@ -213,16 +213,19 @@ const newsletterJSON2 = [{
       "isVisible": true,
       "content": {
         "imageUrl1": {
+          "ampScriptVar" : "2colImageUrl",
           "type": "input",
           "label" : "Image 1",
           "value": "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/d8df5e95-55e6-4f09-980f-a0b7c004e514.png",
         },
         "headline1": {
+          "ampScriptVar" : "2colHeadline",
           "type": "input",
           "label" : "Headline",
           "value": "Innenstadt",
         },
         "text1": {
+          "ampScriptVar" : "2colText",
           "type": "input",
           "label" : "Text",
           "value": "München ist Sitz des Bayerischen Landtages, der Bayerischen Staatsregierung, Verwaltungssitz des die Stadt umgebenden Landkreises München mit dessen Landratsamt sowie des bayerischen Bezirks Oberbayern und des Regierungsbezirks Oberbayern.",
