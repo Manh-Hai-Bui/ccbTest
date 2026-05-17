@@ -165,14 +165,22 @@ const newsletterJSON2 = [{
       "isVisible": true,
       "content": {
         "imageUrl": {
+          "ampScriptVar" : "teaserImageUrl",
           "type": "input",
           "label" : "Image URL",
-          "value": "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/6933f20f-2ab6-4c7f-bfd6-d49c68088cbb.png",
+          "value": {
+                      "de" : "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/6933f20f-2ab6-4c7f-bfd6-d49c68088cbb.png",
+                      "en" : "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/6933f20f-2ab6-4c7f-bfd6-d49c68088cbb.png"
+                  },
         },
         "imageAltText": {
+          "ampScriptVar" : "imageAlt",
           "type": "input",
           "label" : "Image alt text",
-          "value": "Willkommen in München!",
+          "value": {
+                      "de" : "Willkommen in München!",
+                      "en" : "Welcome to Munich!"
+                  },
         }
       },
       "settings": {
@@ -186,9 +194,13 @@ const newsletterJSON2 = [{
       "isVisible": true,
       "content": {
         "text": {
+          "ampScriptVar" : "headline_h1",
           "type": "input",
           "label" : "H1 Text",
-          "value": "Willkommen in München!",
+          "value": {
+                      "de" : "Willkommen in München!",
+                      "en" : "Welcome to Munich!"
+                  },
         },
       },
       "settings": {
@@ -204,9 +216,13 @@ const newsletterJSON2 = [{
       "isVisible": true,
       "content": {
         "text": {
+          "ampScriptVar" : "bodyText",
           "type": "input",
           "label" : "Text",
-          "value": "Das Stadtbild Münchens wird von jahrhundertealte Bauwerken und zahlreichen Museen geprägt. Die bayerische Landeshauptstadt ist für das alljährliche Oktoberfest und ihre Bierhallen bekannt, darunter vor allem das 1589 eröffnete Hofbräuhaus. In der Altstadt am zentralen Marienplatz stehen Wahrzeichen wie das neugotische Neue Rathaus, dessen beliebtes Glockenspiel Melodien und Geschichten aus dem 16. Jahrhundert spielt.",
+          "value": {
+                      "de" : "Das Stadtbild Münchens wird von jahrhundertealte Bauwerken und zahlreichen Museen geprägt. Die bayerische Landeshauptstadt ist für das alljährliche Oktoberfest und ihre Bierhallen bekannt, darunter vor allem das 1589 eröffnete Hofbräuhaus. In der Altstadt am zentralen Marienplatz stehen Wahrzeichen wie das neugotische Neue Rathaus, dessen beliebtes Glockenspiel Melodien und Geschichten aus dem 16. Jahrhundert spielt.",
+                      "en" : "Munich's cityscape is characterized by centuries-old buildings and numerous museums. The Bavarian capital is known for the annual Oktoberfest and its beer halls, most notably the Hofbräuhaus, which opened in 1589. In the Old Town on the central Marienplatz, landmarks such as the neo-Gothic New Town Hall stand out, whose popular glockenspiel plays melodies and stories from the 16th century."
+                  }
         },
       },
       "settings": {
@@ -225,19 +241,28 @@ const newsletterJSON2 = [{
           "ampScriptVar" : "2colImageUrl",
           "type": "input",
           "label" : "Image 1",
-          "value": "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/d8df5e95-55e6-4f09-980f-a0b7c004e514.png",
+          "value": {
+                      "de" : "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/d8df5e95-55e6-4f09-980f-a0b7c004e514.png",
+                      "en" : "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/d8df5e95-55e6-4f09-980f-a0b7c004e514.png"
+                  },
         },
         "headline1": {
           "ampScriptVar" : "2colHeadline",
           "type": "input",
           "label" : "Headline",
-          "value": "Innenstadt",
+          "value": {
+                      "de" : "Innenstadt",
+                      "en" : "Citycenter"
+                  }
         },
         "text1": {
           "ampScriptVar" : "2colText",
           "type": "input",
           "label" : "Text",
-          "value": "München ist Sitz des Bayerischen Landtages, der Bayerischen Staatsregierung, Verwaltungssitz des die Stadt umgebenden Landkreises München mit dessen Landratsamt sowie des bayerischen Bezirks Oberbayern und des Regierungsbezirks Oberbayern.",
+          "value": {
+                      "de" : "München ist Sitz des Bayerischen Landtages, der Bayerischen Staatsregierung, Verwaltungssitz des die Stadt umgebenden Landkreises München mit dessen Landratsamt sowie des bayerischen Bezirks Oberbayern und des Regierungsbezirks Oberbayern.",
+                      "en" : "Munich is the seat of the Bavarian State Parliament and the Bavarian State Government, as well as the administrative center of the Munich district surrounding the city—including its district office—and of the Bavarian district of Upper Bavaria and the administrative region of Upper Bavaria."
+                  },
         }
       },
       "settings": {
@@ -251,24 +276,36 @@ const newsletterJSON2 = [{
       "isVisible": true,
       "content": {
         "imageUrl1": {
+          "ampScriptVar" : "2colImageUrl",
           "type": "input",
           "label" : "Image 1",
-          "value": "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/6933f20f-2ab6-4c7f-bfd6-d49c68088cbb.png",
+          "value": {
+                      "de" : "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/7fbcde2b-0b1e-4c8f-8924-a2ed4ad2bc97.png",
+                      "en" : "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/7fbcde2b-0b1e-4c8f-8924-a2ed4ad2bc97.png"
+                  }
         },
         "headline1": {
+          "ampScriptVar" : "2colHeadline",
           "type": "input",
           "label" : "Headline",
-          "value": "Stadttor",
+          "value": {
+                      "de" : "Stadttor",
+                      "en" : "City Gate"
+                  },
         },
         "text1": {
+          "ampScriptVar" : "2colText",
           "type": "input",
           "label" : "Text",
-          "value": "Münchens historische Stadtbefestigung aus dem 14. Jahrhundert besaß vier große Haupttore. Drei davon sind bis heute erhalten und prägen als beliebte Sehenswürdigkeiten die Altstadt: das Karlstor im Westen, das Sendlinger Tor im Süden und das Isartor im Osten.",
+          "value": {
+                      "de" : "Die „porta Sentlingeriorum“ diente in der zweiten Stadtbefestigung Münchens, die ab dem Ende des 13. Jahrhunderts errichtet wurde, als südliches Haupttor. Die Auswahl der Abbildungen stammt aus den rund 25.000 München-Fotos der Photothek des Zentralinstituts für Kunstgeschichte.",
+                      "en" : "The “porta Sentlingeriorum” served as the main southern gate in Munich’s second city fortifications, which were constructed beginning in the late 13th century. The images were selected from the approximately 25,000 photos of Munich held in the photo library of the Central Institute for Art History."
+                  },
         }
       },
       "settings": {
         "direction" : "rtl"
       }
-    },
+    }
   ]
 }]
