@@ -78,4 +78,4 @@ ENDIF
 
 ]%%
 
-<br>JSON: %%=v(@JsonData)=%%
+<!--<br>JSON: %%=v(@JsonData)=%%-->
