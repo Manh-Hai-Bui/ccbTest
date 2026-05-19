@@ -154,17 +154,23 @@ const newsletterJSON1 = {
 
 const newsletterJSON2 = {
   "subject": {
+        "value" : {
             "de" : "Willkommen in München!",
-            "en" : "Welcome to Munich!"
-        },
-  "preheader": {
-            "de" : "Das ist ein preheader",
+            "en" : "Welcome to Munich"
+        }
+    },
+    "preheader": {
+        "value" : {
+            "de" : "Das ist ein Preheader",
             "en" : "This is a preheader"
-        },
-  "trackingId": {
+        }
+    },
+    "trackingId": {
+        "value" : {
             "de" : "MA000MUNICH",
             "en" : "MA000MUNICH"
-        },
+        }
+    },
   "contentBlocks": [
     {
       "contentBlockId": "TeaserImage_Demo",
