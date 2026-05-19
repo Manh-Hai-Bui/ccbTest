@@ -248,8 +248,8 @@ const newsletterJSON2 = {
                 "label" : "Image URL",
                 "ampScriptVar" : "2colImageUrl",
                 "value": {
-                      "de" : "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/7fbcde2b-0b1e-4c8f-8924-a2ed4ad2bc97.png",
-                      "en" : "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/7fbcde2b-0b1e-4c8f-8924-a2ed4ad2bc97.png"
+                      "de" : "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/d8df5e95-55e6-4f09-980f-a0b7c004e514.png",
+                      "en" : "https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/d8df5e95-55e6-4f09-980f-a0b7c004e514.png"
                   }
             },{
                 "type": "input",
