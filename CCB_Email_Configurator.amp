@@ -1,3 +1,31 @@
+
+%%[
+/* Subject line & tracking configuration */
+]%%
+<span style="display:none;">
+%%[
+SET @locale = AttributeValue('locale')
+IF EMPTY(@locale) THEN
+      SET @locale = 'de'
+ENDIF
+
+SET @ccbDemoSubject = field(row(BuildRowsetFromJSON(@JsonData,CONCAT('$.subject.value'),@locale),1), 1), 1)
+SET @ccbDemoPreheader = field(row(BuildRowsetFromJSON(@JsonData,CONCAT('$.preheader.value.',@locale),1), 1), 1)
+SET @ccbDemoTrackingId = field(row(BuildRowsetFromJSON(@JsonData,CONCAT('$.trackingId.value.',@locale),1), 1), 1)
+]%%
+</span>
+
+<!--
+<br>ccbDemoSubject: %%=v(@ccbDemoSubject)=%%
+<br>ccbDemoPreheader: %%=v(@ccbDemoPreheader)=%%
+<br>ccbDemoTrackingId: %%=v(@ccbDemoTrackingId)=%%
+-->
+
+
+
+
+
+
 %%[ /* Email Content Configurator */]%%
 %%[ 
 
@@ -6,18 +34,6 @@ IF EMPTY(@locale) THEN
       SET @locale = 'de'
 ENDIF
 
-SET @ccbDemoSubjectField = field(row(BuildRowsetFromJSON(@JsonData,CONCAT('$.subject.value'),@locale),1), 1), 1)
-SET @ccbDemoPreheader = field(row(BuildRowsetFromJSON(@JsonData,CONCAT('$.preheader.value.',@locale),1), 1), 1)
-SET @ccbDemoTrackingId = field(row(BuildRowsetFromJSON(@JsonData,CONCAT('$.trackingId.value.',@locale),1), 1), 1)
-]%%
-
-<!--
-<br>ccbDemoSubject: %%=v(@ccbDemoSubject)=%%
-<br>ccbDemoPreheader: %%=v(@ccbDemoPreheader)=%%
-<br>ccbDemoTrackingId: %%=v(@ccbDemoTrackingId)=%%
--->
-
-%%[
 SET @contentBlockRows = BuildRowsetFromJson(@JsonData,'$.contentBlocks.[*]',1)
 SET @contentBlockRowCount = rowcount(@contentBlockRows)
 
@@ -32,23 +48,39 @@ IF @contentBlockRowCount > 0 then
       SET @contentRows = BuildRowsetFromJson(@JsonData,CONCAT('$.contentBlocks[', SUBTRACT(@i,1) ,'].content.[*]'),1)
       SET @contentRowsCount = rowcount(@contentRows)
       IF @contentRowsCount > 0 then
-
             FOR @j = 1 TO @contentRowsCount DO
                   SET @contentRow = row(@contentRows, @j)
                   SET @ampScriptVar = field(@contentRow, "ampScriptVar")
-                  SET @content = field(row(BuildRowsetFromJSON(@JsonData,CONCAT('$.contentBlocks[', SUBTRACT(@i,1) ,'].content[',SUBTRACT(@j,1),'].value.',@locale),1), 1), 1)
+                  SET @contentValue = field(row(BuildRowsetFromJSON(@JsonData,CONCAT('$.contentBlocks[', SUBTRACT(@i,1) ,'].content[',SUBTRACT(@j,1),'].value.',@locale),1), 1), 1)
                   ]%%
                         <!--
                         <br>ampScriptVar: %%=v(@ampScriptVar)=%%
-                        <br>content: %%=v(@content)=%%
+                        <br>content: %%=v(@contentValue)=%%
                         <br>SUBTRACT I: %%=SUBTRACT(@i,1)=%%
                         <br>SUBTRACT J: %%=SUBTRACT(@J,1)=%%
-                        %%=TreatAsContent(Concat("%","%[SET @",@ampScriptVar," = '",@content,"']%","%"))=%%
+                        %%=TreatAsContent(Concat("%","%[SET @",@ampScriptVar," = '",@contentValue,"']%","%"))=%%
                         -->
                   %%[
             NEXT @j
+      ENDIF
 
-            
+      SET @settingsRows = BuildRowsetFromJson(@JsonData,CONCAT('$.contentBlocks[', SUBTRACT(@i,1) ,'].settings.[*]'),1)
+      SET @settingsRowsCount = rowcount(@settingsRows)
+      IF @settingsRowsCount > 0 then
+            FOR @k = 1 TO @settingsRowsCount DO
+                  SET @settingRow = row(@settingsRows, @k)
+                  SET @ampScriptVar = field(@settingRow, "ampScriptVar")
+                  SET @settingValue = field(row(BuildRowsetFromJSON(@JsonData,CONCAT('$.contentBlocks[', SUBTRACT(@i,1) ,'].settings[',SUBTRACT(@k,1),'].value'), 1), 1), 1)
+                  ]%%
+                        
+                        <br>ampScriptVar: %%=v(@ampScriptVar)=%%
+                        <br>content: %%=v(@settingValue)=%%
+                        <br>SUBTRACT I: %%=SUBTRACT(@i,1)=%%
+                        <br>SUBTRACT K: %%=SUBTRACT(@k,1)=%%
+                        %%=TreatAsContent(Concat("%","%[SET @",@ampScriptVar," = '",@settingValue,"']%","%"))=%%
+                        
+                  %%[
+            NEXT @k
       ENDIF
 
       IF @isVisible == true THEN 
