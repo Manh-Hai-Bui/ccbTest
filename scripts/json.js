@@ -41,9 +41,7 @@ const newsletterJSON1 = {
                   "en" : "Welcome to Berlin"
               } 
             }],
-            "settings": {
-                "width": "600px",
-            }
+            "settings": []
         },
         {
             "contentBlockId": "headline_h1_demo",
@@ -59,11 +57,7 @@ const newsletterJSON1 = {
                       "en" : "Welcome to Berlin"
                   }
             }],
-            "settings": {
-                "fontFamily": "Arial, sans-serif",
-                "fontfontSize": "24px",
-                "fontWeight": "bold"
-            }
+            "settings": []
         },
         {
             "contentBlockId": "bodyText_Demo",
@@ -79,11 +73,7 @@ const newsletterJSON1 = {
                         "en" : "Berlin is the capital and a state of the Federal Republic of Germany. With a population of approximately 3.7 million, it is Germany’s most populous municipality; with an area of 891 square kilometers, it is also Germanys largest municipality by land area, as well as the most populous city in the European Union. More than 4.7 million people live in the Berlin metropolitan area, and more than 6.2 million in the Berlin-Brandenburg metropolitan region. The city-state consists of twelve districts. In addition to the Spree, Havel, and Dahme rivers, the city area includes smaller waterways as well as numerous lakes and forests."
                     },
             }],
-            "settings": {
-                "fontFamily": "Arial, sans-serif",
-                "fontfontSize": "14px",
-                "lineHeight": "140%"
-            }
+            "settings": []
         },
         {
             "contentBlockId": "3Col_Image_Demo",
@@ -146,7 +136,7 @@ const newsletterJSON1 = {
                     },
                 },
             ],
-            "settings": {}
+            "settings": []
         }
     ]
 }
@@ -194,9 +184,7 @@ const newsletterJSON2 = {
                   "en" : "Welcome to Munich"
               } 
             }],
-            "settings": {
-                "width": "600px",
-            }
+            "settings": []
         },
         {
             "contentBlockId": "headline_h1_demo",
@@ -232,11 +220,15 @@ const newsletterJSON2 = {
                       "en" : "Munichs cityscape is characterized by centuries-old buildings and numerous museums. The Bavarian capital is known for the annual Oktoberfest and its beer halls, most notably the Hofbräuhaus, which opened in 1589. In the Old Town on the central Marienplatz, landmarks such as the neo-Gothic New Town Hall stand out, whose popular glockenspiel plays melodies and stories from the 16th century."
                   },
             }],
-            "settings": {
-                "fontFamily": "Arial, sans-serif",
-                "fontfontSize": "14px",
-                "lineHeight": "140%"
+            "settings": 
+            [{
+                "ampScriptVar" : "fontSize",
+                "value" : "14px"
+            },{
+                "ampScriptVar" : "fontColor",
+                "value" : "#2E2E2E"
             }
+        ]
         },
         {
             "contentBlockId": "2col_mixed_demo",
@@ -269,9 +261,10 @@ const newsletterJSON2 = {
                   }
             }
           ],
-            "settings": {
-              "direction" : "ltr"
-            }
+            "settings": [{
+                "ampScriptVar" : "direction",
+                "value" : "ltr"
+            }]
         },
         {
             "contentBlockId": "2col_mixed_demo",
@@ -302,11 +295,11 @@ const newsletterJSON2 = {
                       "de" : "Die „porta Sentlingeriorum“ diente in der zweiten Stadtbefestigung Münchens, die ab dem Ende des 13. Jahrhunderts errichtet wurde, als südliches Haupttor. Die Auswahl der Abbildungen stammt aus den rund 25.000 München-Fotos der Photothek des Zentralinstituts für Kunstgeschichte.",
                       "en" : "The “porta Sentlingeriorum” served as the main southern gate in Munich’s second city fortifications, which were constructed beginning in the late 13th century. The images were selected from the approximately 25,000 photos of Munich held in the photo library of the Central Institute for Art History."
                   }
-            }
-          ],
-            "settings": {
-              "direction" : "rtl"
-            }
+            }],
+            "settings": [{
+                "ampScriptVar" : "direction",
+                "value" : "rtl"
+            }]
         }
     ]
 }
