@@ -1,0 +1,86 @@
+.slds-page-header__row {
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #dddbda;
+}
+#ma-value {
+  display: flex;  
+  justify-content: center;
+ align-items: center;
+}
+.ma-prefix {
+    min-width:30px;
+}
+.ma-input {
+    flex: 1;
+    width:100%;
+}
+.emphasis {
+    font-style: italic;
+}
+.error-input-border {
+    border-color: red;
+}
+.non-error-message {
+  display: none;
+}
+.error-message {
+  display: block;
+  color: red;
+}
+
+.form-horizontal {
+    margin-bottom: 20px;
+}
+
+.productPreview {
+    width: 60px;
+}
+
+#sendSku {
+    margin: 8px 0;
+}
+
+
+.slds-form-element-group {
+    display: flex;
+    gap: 10px;
+}
+
+.slds-form-element-group .lineSelection {
+    flex: 1;
+}
+
+.slds-form-element-group > .slds-form-element:not(.lineSelection) {
+    flex: 3;
+}
+
+.slds-form-element__control {
+    display: flex;
+    gap: 8px;
+}
+
+input[type="color"] {
+    flex: 1
+}
+
+input.colorText {
+    flex: 4;
+}
+
+input.colorPicker {
+    padding: 0 4px;
+}
+
+hr.separator {
+    margin: 28px 0 12px 0;
+}
+
+input#priceSwitch {
+    flex: 1;
+    padding: 0 4px;
+    border: 0;
+    outline: 1px solid #dddbda;
+    border-radius: 0.25rem;
+    background-color: #FFFFFF;
+}
+
