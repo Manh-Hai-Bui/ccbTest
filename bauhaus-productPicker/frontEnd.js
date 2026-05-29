@@ -22,46 +22,46 @@ function makeContent(isCorrect, maStatus = true,  blockData = null) {
 function getProductData(productJSON) {
 
 	if(productJSON){
-		$("#response-div").html(status + " - " + report);
-		$("#label").val(result.label);
-		$("#productName").val(result.productName);
-		$("#productMainImage").val(result.productMainImage);
-		$("#additionalImage01").val(result.additionalImage01);
-		$("#additionalImage02").val(result.additionalImage02);
-		$("#additionalImage03").val(result.additionalImage03);
-		$("#additionalImage04").val(result.additionalImage04);
-		$("#productMainImagePreview").attr("src",result.productMainImage);
-		$("#additionalImage01Preview").attr("src",result.additionalImage01);
-		$("#additionalImage02Preview").attr("src",result.additionalImage02);
-		$("#additionalImage03Preview").attr("src",result.additionalImage03);
-		$("#additionalImage04Preview").attr("src",result.additionalImage04);
-		$("#description").val(result.productDescription);
-		$("#productLink").val(result.productLink);
-		$("#usps").val(result.usps);
-		$("#brand").val(result.brandName);
-		$("#brandLogo").val(result.brandLogo);
-		$("#productRating").val(result.productRating);
-		$("#ratingCount").val(result.productRatingCount);
-		$("#price").val(result.price);
-		$("#centPrice").val(result.centPrice);
-		$("#strikePrice").val(result.strikePrice);
-		$("#strikeCentPrice").val(result.strikeCentPrice);
-		$("#unit").val(result.unit);
-		$("#energyLabelClass").val(result.energyLabelClass);
-		$("#energyLabelImage").val(result.energyLabelImage);
+		$("#response-div").html(status + " - " + productJSON.report);
+		$("#label").val(productJSON.label);
+		$("#productName").val(productJSON.productName);
+		$("#productMainImage").val(productJSON.productMainImage);
+		$("#additionalImage01").val(productJSON.additionalImage01);
+		$("#additionalImage02").val(productJSON.additionalImage02);
+		$("#additionalImage03").val(productJSON.additionalImage03);
+		$("#additionalImage04").val(productJSON.additionalImage04);
+		$("#productMainImagePreview").attr("src",productJSON.productMainImage);
+		$("#additionalImage01Preview").attr("src",productJSON.additionalImage01);
+		$("#additionalImage02Preview").attr("src",productJSON.additionalImage02);
+		$("#additionalImage03Preview").attr("src",productJSON.additionalImage03);
+		$("#additionalImage04Preview").attr("src",productJSON.additionalImage04);
+		$("#description").val(productJSON.productDescription);
+		$("#productLink").val(productJSON.productLink);
+		$("#usps").val(productJSON.usps);
+		$("#brand").val(productJSON.brandName);
+		$("#brandLogo").val(productJSON.brandLogo);
+		$("#productRating").val(productJSON.productRating);
+		$("#ratingCount").val(productJSON.productRatingCount);
+		$("#price").val(productJSON.price);
+		$("#centPrice").val(productJSON.centPrice);
+		$("#strikePrice").val(productJSON.strikePrice);
+		$("#strikeCentPrice").val(productJSON.strikeCentPrice);
+		$("#unit").val(productJSON.unit);
+		$("#energyLabelClass").val(productJSON.energyLabelClass);
+		$("#energyLabelImage").val(productJSON.energyLabelImage);
 
 		// Breaking down the groundPrice string to smaller components
 		// [0] Entire string, [1] EuroPrice, [2] CentPrice, [3] Unit String
-		let groundPriceMatch = result.groundPrice.replaceAll('.','').match(/(\d+),(\d{2})\s*€\s(.*)$/);
+		let groundPriceMatch = productJSON.groundPrice.replaceAll('.','').match(/(\d+),(\d{2})\s*€\s(.*)$/);
 		if(groundPriceMatch && groundPriceMatch.length > 3) {
-			$("#priceSwitch").attr('data-prices', JSON.stringify({ euroPrice: result.price, centPrice: result.centPrice, unitString: result.unit, euroPrice_alt: groundPriceMatch[1], centPrice_alt: groundPriceMatch[2], unitString_alt: groundPriceMatch[3]}));
+			$("#priceSwitch").attr('data-prices', JSON.stringify({ euroPrice: productJSON.price, centPrice: productJSON.centPrice, unitString: productJSON.unit, euroPrice_alt: groundPriceMatch[1], centPrice_alt: groundPriceMatch[2], unitString_alt: groundPriceMatch[3]}));
 		}
 
 		// Load & validate product quantity price JSON
 		let productQuantityData = "[]";
 		let productQuantityHeadline = "";
 		try {
-		productQuantityData = result.productQuantityData.replaceAll("'", '"');
+		productQuantityData = productJSON.productQuantityData.replaceAll("'", '"');
 		$("#productQuantityJsonInput").val(productQuantityData);
 
 		let productQuantityJSON = JSON.parse(productQuantityData);
