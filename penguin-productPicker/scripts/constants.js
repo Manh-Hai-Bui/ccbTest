@@ -1,10 +1,10 @@
 const product0 = {
     "status": "OK",
-    "productUrl": "https://www.penguin.de/ean/9783570183489",
-    "imageUrl": "https://content.penguinrandomhouse.de/content/edition/cover/350px/9783570183489.jpg",
-    "ean": "9783570183489",
+    "productUrl": "https://www.penguin.de/ean/9783328303275",
+    "imageUrl": "https://content.penguinrandomhouse.de/content/edition/cover/350px/9783328303275.jpg",
+    "ean": "9783328303275",
     "token": "eyJhbGciOiJIUzI1NiIsImtpZCI6IjQiLCJ2ZXIiOiIxIiwidHlwIjoiSldUIn0.eyJhY2Nlc3NfdG9rZW4iOiJXOWVTTEx0OXV0QlFYQWJTdGFydXRCY2ciLCJjbGllbnRfaWQiOiJnc2pqNmY4d2Fydm43bGg4anU1Yzc1d24iLCJlaWQiOjUzNjAwNjY3NCwic3RhY2tfa2V5IjoiUzUxIiwicGxhdGZvcm1fdmVyc2lvbiI6MiwiY2xpZW50X3R5cGUiOiJTZXJ2ZXJUb1NlcnZlciIsInBpZCI6MTE0fQ.8I7NxJEeZ_7JMj6Kk3HvUNu-MIrAPa_VpfNVIIcBOHE.niEbGikwceonULHDkmv5gjqXZoYAFCcGWwkossUdIQONP10MZiTFFnI22r8bIqbbCsnwgnufCYn6Fb8gB78kCS6tNlMN7BwV0U8Tyjpn6jhiTaj8LJ-H7TXUEVFkpQ-zEdCQbexTzR2t27ArjD5PkiqGvboXKN2OJUgdO",
-    "isbn": "978-3-570-18348-9"
+    "isbn": "978-3-328-30327-5"
 }
 
 const product1 = {
