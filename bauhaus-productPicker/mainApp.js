@@ -99,8 +99,8 @@ if (window.self === window.top) { //temp remove to view in browser
             let sanitizedDesc = blockData.description.replace(/"/g, '""');
 
             // Assemble "blocksToDisplay" with multiple modules
-            let mainProductBlock = "%%=ContentBlockByID('12205')=%%";
-            let productQuantityBlock = "%%=ContentBlockByID('38301')=%%";
+            let mainProductBlock = "%%=ContentBlockByKey('haiCCB2_product_module')=%%";
+            let productQuantityBlock = "%%=ContentBlockByKey('haiCCB2_productQuantityPrice')=%%";
 
             let blocksToDisplay = mainProductBlock;
             if( blockData.productQuantitySelect  == 'true' && blockData.productQuantityHeadline != ""){
