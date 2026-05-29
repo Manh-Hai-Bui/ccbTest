@@ -55,6 +55,8 @@ function getProductData(productJSON) {
 		let groundPriceMatch = productJSON.groundPrice.replaceAll('.','').match(/(\d+),(\d{2})\s*€\s(.*)$/);
 		if(groundPriceMatch && groundPriceMatch.length > 3) {
 			$("#priceSwitch").attr('data-prices', JSON.stringify({ euroPrice: productJSON.price, centPrice: productJSON.centPrice, unitString: productJSON.unit, euroPrice_alt: groundPriceMatch[1], centPrice_alt: groundPriceMatch[2], unitString_alt: groundPriceMatch[3]}));
+		} else {
+			$("#priceSwitch").attr('data-prices', '')
 		}
 
 		// Load & validate product quantity price JSON
