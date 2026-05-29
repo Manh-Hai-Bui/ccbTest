@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Penguin Cover Picker</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./scripts/constants.js" defer></script>
+    <script src="./scripts/blocksdk.js" defer></script>
+    <script src="./scripts/frontEnd.js" defer></script>
+    <script src="./scripts/mainApp.js" defer></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Penguin Cover Picker</h1>
+
+        <!-- Remove at deployment -->
+        <div class="warning" style="background-color: #fcd4d4; font-size: 12px; padding: 10px; line-height: 150%;"> Dieser Custom Content Block ist derzeit in der Entwicklungsphase und dient nur zum Testen. Bitte <b>nicht</b> für Versände nutzen. </div>
+
+        <div class="menu-group">
+            <h2>Modul</h2>
+            <select id="menu" name="menu">
+                <option value="" selected>Bitte Modul auswählen:</option>
+                <option value="gallery_manual">Gallery Manual 4x1</option>
+                <option value="cover_image">Cover Image</option>
+                <option value="duo_layout">Duo layout 2x1</option>
+                <!--<option value="layout_recommendation">Layout Recommandation</option>-->
+            </select>
+        </div>
+
+        <!---->
+
+        <div class="gallery-tab module" data-menu="duo_layout">
+            <h2>Duo layout 2x1</h2>
+            <div class="row-container">
+                <div class="row-group">
+                    <div class="input-group">
+                        <label for="isbn1">ISBN</label>
+                        <input class="isbn-input" type="text" id="isbn1" name="isbn1">
+                        <input type="button" value="Bild laden">
+                        <span class="statusMessage"></span>
+                        <span class="ean"></span>
+                    </div>
+
+                    <div class="image-group">
+                        <div class="imagePlaceholder">Kein Bild geladen<br>Bitte ISBN eintragen</div>
+                        <img src="" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="title1">Überschrift</label>
+                    <input type="text" class="title-input" name="title1">
+                </div>
+
+                <div class="form-group">
+                    <label for="copy1">Text</label>
+                    <input type="text" class="copy-input" name="copy1">
+                </div>
+
+                <div class="form-group">
+                    <label for="cta1">Call-to-Action</label>
+                    <input type="text" class="cta-input" name="cta1">
+                </div>
+
+                <div class="form-group">
+                    <label for="link1">Link</label>
+                    <input type="text" class="link-input" name="link1">
+                </div>
+
+            </div>
+            <div class="row-container">
+                <div class="row-group">
+                    <div class="input-group">
+                        <label for="isbn2">ISBN</label>
+                        <input class="isbn-input" type="text" id="isbn2" name="isbn2">
+                        <input type="button" value="Bild laden">
+                        <span class="statusMessage"></span>
+                        <span class="ean"></span>
+                    </div>
+
+                    <div class="image-group">
+                        <div class="imagePlaceholder">Kein Bild geladen<br>Bitte ISBN eintragen</div>
+                        <img src="" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="title2">Überschrift</label>
+                    <input type="text" class="title-input" name="title2">
+                </div>
+
+                <div class="form-group">
+                    <label for="copy2">Text</label>
+                    <input type="text" class="copy-input" name="copy2">
+                </div>
+
+                <div class="form-group">
+                    <label for="cta2">Call-to-Action Text</label>
+                    <input type="text" class="cta-input" name="cta2">
+                </div>
+
+                <div class="form-group">
+                    <label for="link2">Link</label>
+                    <input type="text" class="link-input" name="link2">
+                </div>
+            </div> 
+        </div>
+
+        <div class="gallery-tab module" data-menu="gallery_manual">
+            <h2>Gallery Manual 4x1</h2>
+            <div class="row-container">
+                <div class="row-group">
+                    <div class="input-group">
+                        <label for="isbn1">ISBN</label>
+                        <input class="isbn-input" type="text" id="isbn1" name="isbn1">
+                        <input type="button" value="Bild laden">
+                        <span class="statusMessage"></span>
+                        <span class="ean"></span>
+                    </div>
+
+                    <div class="image-group">
+                        <div class="imagePlaceholder">Kein Bild geladen<br>Bitte ISBN eintragen</div>
+                        <img src="" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="link1">Link</label>
+                    <input type="text" class="link-input" name="link1">
+                </div>
+            </div>
+
+            <div class="row-container">
+                <div class="row-group">
+                    <div class="input-group">
+                        <label for="isbn2">ISBN</label>
+                        <input class="isbn-input" type="text" id="isbn2" name="isbn2">
+                        <input type="button" value="Bild laden">
+                        <span class="statusMessage"></span>
+                        <span class="ean"></span>
+                    </div>
+
+                    <div class="image-group">
+                        <div class="imagePlaceholder">Kein Bild geladen<br>Bitte ISBN eintragen</div>
+                        <img src="" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="link2">Link</label>
+                    <input type="text" class="link-input" name="link2">
+                </div>
+            </div>
+
+            <div class="row-container">
+                <div class="row-group">
+                    <div class="input-group">
+                        <label for="isbn3">ISBN</label>
+                        <input class="isbn-input" type="text" id="isbn3" name="isbn3">
+                        <input type="button" value="Bild laden">
+                        <span class="statusMessage"></span>
+                        <span class="ean"></span>
+                    </div>
+
+                    <div class="image-group">
+                        <div class="imagePlaceholder">Kein Bild geladen<br>Bitte ISBN eintragen</div>
+                        <img src="" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="link3">Link</label>
+                    <input type="text" class="link-input" name="link3">
+                </div>
+            </div>
+
+            <div class="row-container">
+                <div class="row-group">
+                    <div class="input-group">
+                        <label for="isbn4">ISBN</label>
+                        <input class="isbn-input" type="text" id="isbn4" name="isbn4">
+                        <input type="button" value="Bild laden">
+                        <span class="statusMessage"></span>
+                        <span class="ean"></span>
+                    </div>
+
+                    <div class="image-group">
+                        <div class="imagePlaceholder">Kein Bild geladen<br>Bitte ISBN eintragen</div>
+                        <img src="" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="link4">Link</label>
+                    <input type="text" class="link-input" name="link4">
+                </div>
+            </div>  
+        </div>
+
+       <div class="coverImage-tab module" data-menu="cover_image">
+            <h2>Cover Image</h2>
+            <div class="row-container">
+                <div class="row-group">
+                    <div class="input-group">
+                        <label for="isbn1">ISBN</label>
+                        <input class="isbn-input" type="text" id="isbn1" name="isbn1">
+                        <input type="button" value="Bild laden">
+                        <span class="statusMessage"></span>
+                        <span class="ean"></span>
+                    </div>
+
+                    <div class="image-group">
+                        <div class="imagePlaceholder">Kein Bild geladen<br>Bitte ISBN eintragen</div>
+                        <img src="" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="link1">Link</label>
+                    <input type="text" class="link-input" name="link1">
+                </div>
+            </div>
+        </div>
+
+        <div class="layoutRecommendation-tab module" data-menu="layout_recommendation">
+            <h2>Layout Recommendation</h2>
+             <div class="row-container">
+                <div class="row-group">
+                    <div class="input-group">
+                        <label for="isbn1">ISBN</label>
+                        <input class="isbn-input" type="text" id="isbn1" name="isbn1">
+                        <input type="button" value="Bild laden">
+                        <span class="statusMessage"></span>
+                        <span class="ean"></span>
+                    </div>
+
+                    <div class="image-group">
+                        <div class="imagePlaceholder">Kein Bild geladen<br>Bitte ISBN eintragen</div>
+                        <img src="" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="link1">Link</label>
+                    <input type="text" class="link-input" name="link1">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
