@@ -28,5 +28,5 @@ document.querySelector('#sendButton').addEventListener('click', (e) => {
     } 
 
     sdk.setSuperContent(`${JSON.stringify(json, null, 2)}`)
-    sdk.setContent(`%%=ContentBlockByKey('haiCCB_jsonToHeaderConfigurator')=%%%%[ SET @JsonData = '${JSON.stringify(json, null, 2)}' ]%%%%=ContentBlockByKey('haiCCB_jsonToEmailConfigurator')=%%`)
+    sdk.setContent(`%%[ SET @JsonData = '${JSON.stringify(json, null, 2)}' ]%% %%=ContentBlockByKey('haiCCB_jsonToHeaderConfigurator')=%% %%=ContentBlockByKey('haiCCB_jsonToEmailConfigurator')=%%`)
 })
