@@ -219,6 +219,3 @@ if (window.self === window.top) { //temp remove to view in browser
     //window.onscroll = saveData;
 
 } 
-
-
-export {saveData}
