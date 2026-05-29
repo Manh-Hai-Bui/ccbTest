@@ -3,6 +3,18 @@ tabs: [/* */]
 ,blockEditorWidth: 425
 });
 
+document.getElementById('gen-btn').addEventListener('click', function(){
+  var wrap=document.getElementById('output-wrap');
+  var pre=document.getElementById('output');
+  pre.textContent=JSON.stringify(state[current],null,2);
+  wrap.style.display='block';
+  wrap.scrollIntoView({behavior:'smooth',block:'nearest'});
+
+  sdk.setSuperContent(`${JSON.stringify(state[current],null,2)}`)
+  sdk.setContent(`%%[ SET @JsonData = '${JSON.stringify(state[current],null,2)}' ]%%`)
+
+});
+
 console.log('Testing block')
 
 /*setTimeout(()=>{
@@ -23,6 +35,6 @@ document.querySelector('#sendButton').addEventListener('click', (e) => {
         json = newsletterJSON2;
     } 
 
-    //sdk.setSuperContent(`${JSON.stringify(json, null, 2)}`)
-    //sdk.setContent(`%%[ SET @JsonData = '${JSON.stringify(json, null, 2)}' ]%%`)
+    sdk.setSuperContent(`${JSON.stringify(json, null, 2)}`)
+    sdk.setContent(`%%[ SET @JsonData = '${JSON.stringify(json, null, 2)}' ]%%`)
 })

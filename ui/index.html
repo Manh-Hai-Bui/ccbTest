@@ -1,3 +1,4 @@
+<!--
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,5 +14,387 @@
     <input id="contentIdInput" type="text">
     <button id="sendButton">Send</button>
     <span>C1</span>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newsletter JSON Editor</title>
+<script src="../scripts/blocksdk.js" defer></script>
+<script src="./ui_script.js" defer></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f5f4f0;--surface:#ffffff;--surface2:#f0efe9;
+  --border:#e0ddd6;--border2:#ccc9c0;
+  --text:#1a1916;--text2:#6b6860;--text3:#9b9890;
+  --accent:#2a5cff;--accent-bg:#eef1ff;
+  --green:#1a7a4a;--green-bg:#eaf5ee;
+  --radius:8px;--radius-lg:12px;
+}
+body{background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;font-size:14px;min-height:100vh;padding:16px;max-width:480px;margin:0 auto}
+h1{font-size:15px;font-weight:600;letter-spacing:-0.01em;margin-bottom:14px}
+.tabs{display:flex;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:3px;gap:3px;margin-bottom:12px}
+.tab{flex:1;padding:6px 8px;border:none;border-radius:6px;background:transparent;color:var(--text2);font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:all 0.15s}
+.tab.active{background:var(--surface);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,0.1)}
+.meta-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px;margin-bottom:10px}
+.slabel{font-size:10px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text3);margin-bottom:6px;margin-top:12px}
+.slabel:first-child{margin-top:0}
+.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.lang-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.06em;color:var(--text3);text-transform:uppercase;margin-bottom:3px}
+input[type=text],textarea{width:100%;padding:6px 8px;border:1px solid var(--border);border-radius:6px;background:var(--surface2);color:var(--text);font-size:12px;font-family:inherit;outline:none;transition:border-color 0.15s,background 0.15s}
+input[type=text]:focus,textarea:focus{border-color:var(--accent);background:var(--surface);box-shadow:0 0 0 3px rgba(42,92,255,0.1)}
+textarea{resize:vertical;min-height:60px;line-height:1.45}
+.blocks-label{font-size:10px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text3);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.blocks-label span{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:1px 7px;font-size:10px;color:var(--text2);font-weight:600}
+#blocks-list{display:flex;flex-direction:column;gap:6px}
+.block{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:border-color 0.15s,box-shadow 0.15s}
+.block.drag-over{border-color:var(--accent);box-shadow:0 0 0 3px rgba(42,92,255,0.12)}
+.block.dragging{opacity:0.35}
+.block-header{display:flex;align-items:center;gap:8px;padding:10px 12px;cursor:pointer;user-select:none;-webkit-user-select:none}
+.block-header:hover{background:var(--surface2)}
+.grip{display:flex;flex-direction:column;gap:2.5px;cursor:grab;padding:2px;flex-shrink:0}
+.grip:active{cursor:grabbing}
+.grip span{display:block;width:12px;height:1.5px;background:var(--border2);border-radius:2px}
+.block-id{flex:1;font-size:12px;font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.block-type-badge{font-size:10px;font-weight:600;color:var(--accent);background:var(--accent-bg);padding:2px 8px;border-radius:20px;flex-shrink:0}
+.vis-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;background:var(--border2);transition:background 0.15s}
+.vis-dot.on{background:var(--green)}
+.chevron{width:16px;height:16px;flex-shrink:0;color:var(--text3);transition:transform 0.2s;display:flex;align-items:center;justify-content:center}
+.chevron.open{transform:rotate(180deg)}
+.block-body{border-top:1px solid var(--border);padding:12px;display:none}
+.block-body.open{display:block}
+.field-row{margin-bottom:10px}
+.field-row:last-child{margin-bottom:0}
+.field-name{font-size:11px;font-weight:600;color:var(--text2);margin-bottom:5px}
+.field-var{font-size:10px;color:var(--text3);font-family:ui-monospace,monospace;margin-left:5px;font-weight:400}
+.settings-block{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:10px;margin-top:10px}
+.settings-row{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}
+.vis-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.vis-row label{font-size:12px;color:var(--text2);cursor:pointer}
+input[type=checkbox]{width:15px;height:15px;accent-color:var(--accent);cursor:pointer}
+.generate-btn{width:100%;margin-top:12px;padding:11px;background:var(--text);color:#fff;border:none;border-radius:var(--radius);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;letter-spacing:-0.01em;transition:opacity 0.15s,transform 0.1s;display:flex;align-items:center;justify-content:center;gap:7px}
+.generate-btn:hover{opacity:0.85}
+.generate-btn:active{transform:scale(0.98)}
+.output-wrap{display:none;margin-top:10px}
+.output-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.output-header span{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text3)}
+.copy-btn{padding:4px 10px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;font-size:11px;font-weight:600;color:var(--text2);cursor:pointer;font-family:inherit;transition:all 0.15s}
+.copy-btn:hover{border-color:var(--border2);color:var(--text)}
+.copy-btn.copied{color:var(--green);border-color:var(--green);background:var(--green-bg)}
+pre#output{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:12px;font-size:11px;font-family:ui-monospace,monospace;white-space:pre;overflow-x:auto;overflow-y:auto;max-height:320px;color:var(--text2);line-height:1.5}
+</style>
+</head>
+<body>
+<h1>Newsletter JSON Editor</h1>
+<div class="tabs" id="tabs"></div>
+<div id="editor-root"></div>
+<button class="generate-btn" id="gen-btn">
+  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6L2 8l2 2M12 6l2 2-2 2M9 3l-2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  Generate JSON
+</button>
+<div class="output-wrap" id="output-wrap">
+  <div class="output-header">
+    <span>Output</span>
+    <button class="copy-btn" id="copy-btn">Copy</button>
+  </div>
+  <pre id="output"></pre>
+</div>
+
+<script id="data-src" type="application/json">
+[
+  {
+    "subject":{"value":{"de":"Willkommen in Berlin!","en":"Welcome to Berlin"}},
+    "preheader":{"value":{"de":"Das ist ein Preheader","en":"This is a preheader"}},
+    "trackingId":{"value":{"de":"MA000BERLIN","en":"MA000BERLIN"}},
+    "contentBlocks":[
+      {
+        "contentBlockId":"TeaserImage_Demo","contentBlockKey":"TeaserImage_Demo","type":"teaser","isVisible":true,
+        "content":[
+          {"type":"input","label":"Image URL","ampScriptVar":"teaserImageUrl","value":{"de":"https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/19d0f254-4986-4c81-b2f3-6b7bbe0eb5e9.png","en":"https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/19d0f254-4986-4c81-b2f3-6b7bbe0eb5e9.png"}},
+          {"type":"input","label":"Image alt text","ampScriptVar":"imageAlt","value":{"de":"Willkommen in Berlin!","en":"Welcome to Berlin"}}
+        ],"settings":[]
+      },
+      {
+        "contentBlockId":"headline_h1_demo","contentBlockKey":"headline_h1_demo","type":"headline","isVisible":true,
+        "content":[{"type":"input","label":"H1 Text","ampScriptVar":"headline_h1","value":{"de":"Willkommen in Berlin","en":"Welcome to Berlin"}}],
+        "settings":[]
+      },
+      {
+        "contentBlockId":"bodyText_Demo","contentBlockKey":"bodyText_Demo","type":"text","isVisible":true,
+        "content":[{"type":"input","label":"Text","ampScriptVar":"bodyText","value":{"de":"Berlin ist die Hauptstadt und ein Land der Bundesrepublik Deutschland. Die Großstadt ist mit rund 3,7 Millionen Einwohnern die bevölkerungsreichste und mit 891 Quadratkilometern die flächengrößte Gemeinde Deutschlands sowie die bevölkerungsreichste Stadt der Europäischen Union. In der Agglomeration Berlin leben mehr als 4,7 Millionen Menschen und in der Metropolregion Berlin-Brandenburg mehr als 6,2 Millionen. Der Stadtstaat besteht aus zwölf Bezirken. Neben den Flüssen Spree, Havel und Dahme befinden sich im Stadtgebiet kleinere Fließgewässer sowie zahlreiche Seen und Wälder.","en":"Berlin is the capital and a state of the Federal Republic of Germany. With a population of approximately 3.7 million, it is Germany's most populous municipality; with an area of 891 square kilometers, it is also Germany's largest municipality by land area, as well as the most populous city in the European Union. More than 4.7 million people live in the Berlin metropolitan area, and more than 6.2 million in the Berlin-Brandenburg metropolitan region. The city-state consists of twelve districts."}}],
+        "settings":[]
+      },
+      {
+        "contentBlockId":"3Col_Image_Demo","contentBlockKey":"3Col_Image_Demo","type":"3colMixed","isVisible":true,
+        "content":[
+          {"type":"input","ampScriptVar":"imageUrl1","label":"Image 1","value":{"de":"https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/8a46ac97-eb9a-4e40-b2cb-a0469c1d83c8.png","en":"https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/8a46ac97-eb9a-4e40-b2cb-a0469c1d83c8.png"}},
+          {"type":"input","ampScriptVar":"imageUrl2","label":"Image 2","value":{"de":"https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/2eb093ba-3676-45d5-87f0-6a227058670b.png","en":"https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/2eb093ba-3676-45d5-87f0-6a227058670b.png"}},
+          {"type":"input","ampScriptVar":"imageUrl3","label":"Image 3","value":{"de":"https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/089182d9-9f4e-477d-a750-fd569fe9750f.png","en":"https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/089182d9-9f4e-477d-a750-fd569fe9750f.png"}},
+          {"type":"input","ampScriptVar":"3coltext1","label":"Image Description 1","value":{"de":"Stadt","en":"City"}},
+          {"type":"input","ampScriptVar":"3coltext2","label":"Image Description 2","value":{"de":"Museen","en":"Museums"}},
+          {"type":"input","ampScriptVar":"3coltext3","label":"Image Description 3","value":{"de":"Architektur","en":"Architecture"}}
+        ],"settings":[]
+      }
+    ]
+  },
+  {
+    "subject":{"value":{"de":"Willkommen in München!","en":"Welcome to Munich"}},
+    "preheader":{"value":{"de":"Das ist ein Preheader","en":"This is a preheader"}},
+    "trackingId":{"value":{"de":"MA000MUNICH","en":"MA000MUNICH"}},
+    "contentBlocks":[
+      {
+        "contentBlockId":"TeaserImage_Demo","contentBlockKey":"TeaserImage_Demo","type":"teaser","isVisible":true,
+        "content":[
+          {"type":"input","label":"Image URL","ampScriptVar":"teaserImageUrl","value":{"de":"https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/6933f20f-2ab6-4c7f-bfd6-d49c68088cbb.png","en":"https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/6933f20f-2ab6-4c7f-bfd6-d49c68088cbb.png"}},
+          {"type":"input","label":"Image alt text","ampScriptVar":"imageAlt","value":{"de":"Willkommen in München!","en":"Welcome to Munich"}}
+        ],"settings":[]
+      },
+      {
+        "contentBlockId":"headline_h1_demo","contentBlockKey":"headline_h1_demo","type":"headline","isVisible":true,
+        "content":[{"type":"input","label":"H1 Text","ampScriptVar":"headline_h1","value":{"de":"Willkommen in München","en":"Welcome to Munich"}}],
+        "settings":{"fontFamily":"Arial, sans-serif","fontfontSize":"24px","fontWeight":"bold"}
+      },
+      {
+        "contentBlockId":"bodyText_Demo","contentBlockKey":"bodyText_Demo","type":"text","isVisible":true,
+        "content":[{"type":"input","label":"Text","ampScriptVar":"bodyText","value":{"de":"Das Stadtbild Münchens wird von jahrhundertealten Bauwerken und zahlreichen Museen geprägt. Die bayerische Landeshauptstadt ist für das alljährliche Oktoberfest und ihre Bierhallen bekannt, darunter vor allem das 1589 eröffnete Hofbräuhaus. In der Altstadt am zentralen Marienplatz stehen Wahrzeichen wie das neugotische Neue Rathaus, dessen beliebtes Glockenspiel Melodien und Geschichten aus dem 16. Jahrhundert spielt.","en":"Munich's cityscape is characterized by centuries-old buildings and numerous museums. The Bavarian capital is known for the annual Oktoberfest and its beer halls, most notably the Hofbräuhaus, which opened in 1589. In the Old Town on the central Marienplatz, landmarks such as the neo-Gothic New Town Hall stand out, whose popular glockenspiel plays melodies and stories from the 16th century."}}],
+        "settings":[{"ampScriptVar":"fontSize","value":"14px"},{"ampScriptVar":"fontColor","value":"#2E2E2E"}]
+      },
+      {
+        "contentBlockId":"2col_mixed_demo","contentBlockKey":"2col_mixed_demo","type":"2colMixed","isVisible":true,
+        "content":[
+          {"type":"input","label":"Image URL","ampScriptVar":"2colImageUrl","value":{"de":"https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/d8df5e95-55e6-4f09-980f-a0b7c004e514.png","en":"https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/d8df5e95-55e6-4f09-980f-a0b7c004e514.png"}},
+          {"type":"input","label":"Headline","ampScriptVar":"2colHeadline","value":{"de":"Stadttor","en":"City Gate"}},
+          {"type":"input","label":"Body Text","ampScriptVar":"2colText","value":{"de":"Die \u201eporta Sentlingeriorum\u201c diente in der zweiten Stadtbefestigung Münchens, die ab dem Ende des 13. Jahrhunderts errichtet wurde, als südliches Haupttor. Die Auswahl der Abbildungen stammt aus den rund 25.000 München-Fotos der Photothek des Zentralinstituts für Kunstgeschichte.","en":"The \u201cporta Sentlingeriorum\u201d served as the main southern gate in Munich\u2019s second city fortifications, which were constructed beginning in the late 13th century. The images were selected from the approximately 25,000 photos of Munich held in the photo library of the Central Institute for Art History."}}
+        ],
+        "settings":[{"ampScriptVar":"direction","value":"ltr"}]
+      },
+      {
+        "contentBlockId":"2col_mixed_demo","contentBlockKey":"2col_mixed_demo","type":"2colMixed","isVisible":true,
+        "content":[
+          {"type":"input","label":"Image URL","ampScriptVar":"2colImageUrl","value":{"de":"https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/7fbcde2b-0b1e-4c8f-8924-a2ed4ad2bc97.png","en":"https://image.s51.sfmc-content.com/lib/fe2c11737364047c7c1275/m/1/7fbcde2b-0b1e-4c8f-8924-a2ed4ad2bc97.png"}},
+          {"type":"input","label":"Headline","ampScriptVar":"2colHeadline","value":{"de":"Stadttor","en":"City Gate"}},
+          {"type":"input","label":"Body Text","ampScriptVar":"2colText","value":{"de":"Die \u201eporta Sentlingeriorum\u201c diente in der zweiten Stadtbefestigung Münchens, die ab dem Ende des 13. Jahrhunderts errichtet wurde, als südliches Haupttor. Die Auswahl der Abbildungen stammt aus den rund 25.000 München-Fotos der Photothek des Zentralinstituts für Kunstgeschichte.","en":"The \u201cporta Sentlingeriorum\u201d served as the main southern gate in Munich\u2019s second city fortifications, which were constructed beginning in the late 13th century. The images were selected from the approximately 25,000 photos of Munich held in the photo library of the Central Institute for Art History."}}
+        ],
+        "settings":[{"ampScriptVar":"direction","value":"rtl"}]
+      }
+    ]
+  }
+]
+</script>
+
+<script>
+var NAMES = ['Berlin','Munich'];
+var state = JSON.parse(document.getElementById('data-src').textContent);
+var current = 0;
+var dragSrc = null;
+
+console.log(state);
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+function normalizeSettings(s) {
+  if (!s) return [];
+  if (Array.isArray(s)) return s;
+  if (typeof s === 'object') return Object.entries(s).map(function(e){ return {ampScriptVar:e[0], value:String(e[1])}; });
+  return [];
+}
+
+function buildTabs() {
+  var html = '';
+  for (var i=0;i<state.length;i++) {
+    html += '<button class="tab'+(i===current?' active':'')+'" data-i="'+i+'">'+(NAMES[i]||'Newsletter '+(i+1))+'</button>';
+  }
+  document.getElementById('tabs').innerHTML = html;
+  document.getElementById('tabs').querySelectorAll('.tab').forEach(function(btn){
+    btn.addEventListener('click', function(){ switchTab(+this.dataset.i); });
+  });
+}
+
+function switchTab(i) { current=i; buildTabs(); renderEditor(); }
+
+function renderEditor() {
+  var s = state[current];
+  var blocks = s.contentBlocks;
+  var html = '<div class="meta-card">';
+  html += '<div class="slabel">Subject</div><div class="lang-grid">';
+  html += '<div><span class="lang-badge">DE</span><input type="text" id="subj-de" value="'+esc(s.subject.value.de)+'"></div>';
+  html += '<div><span class="lang-badge">EN</span><input type="text" id="subj-en" value="'+esc(s.subject.value.en)+'"></div>';
+  html += '</div>';
+  html += '<div class="slabel">Preheader</div><div class="lang-grid">';
+  html += '<div><span class="lang-badge">DE</span><input type="text" id="pre-de" value="'+esc(s.preheader.value.de)+'"></div>';
+  html += '<div><span class="lang-badge">EN</span><input type="text" id="pre-en" value="'+esc(s.preheader.value.en)+'"></div>';
+  html += '</div>';
+  html += '<div class="slabel">Tracking ID</div>';
+  html += '<input type="text" id="tracking" value="'+esc(s.trackingId.value.de)+'">';
+  html += '</div>';
+
+  html += '<div class="blocks-label">Content blocks <span>'+blocks.length+'</span></div>';
+  html += '<div id="blocks-list">';
+  for (var i=0;i<blocks.length;i++) {
+    html += buildBlockHTML(blocks[i], i, normalizeSettings(blocks[i].settings));
+  }
+  html += '</div>';
+
+  document.getElementById('editor-root').innerHTML = html;
+
+  // Bind meta fields
+  document.getElementById('subj-de').addEventListener('input', function(){ state[current].subject.value.de=this.value; });
+  document.getElementById('subj-en').addEventListener('input', function(){ state[current].subject.value.en=this.value; });
+  document.getElementById('pre-de').addEventListener('input', function(){ state[current].preheader.value.de=this.value; });
+  document.getElementById('pre-en').addEventListener('input', function(){ state[current].preheader.value.en=this.value; });
+  document.getElementById('tracking').addEventListener('input', function(){ state[current].trackingId.value.de=this.value; state[current].trackingId.value.en=this.value; });
+
+  // Bind content fields
+  document.querySelectorAll('[data-bi]').forEach(function(el){
+    el.addEventListener('input', function(){
+      var bi=+this.dataset.bi, ci=+this.dataset.ci, lang=this.dataset.lang;
+      if (!state[current].contentBlocks[bi].content[ci].value) state[current].contentBlocks[bi].content[ci].value={};
+      state[current].contentBlocks[bi].content[ci].value[lang]=this.value;
+    });
+  });
+
+  // Bind setting fields
+  document.querySelectorAll('[data-si]').forEach(function(el){
+    el.addEventListener('input', function(){
+      var bi=+this.dataset.bi, si=+this.dataset.si, key=this.dataset.key;
+      var s=state[current].contentBlocks[bi];
+      if (Array.isArray(s.settings)) s.settings[si][key]=this.value;
+    });
+  });
+
+  // Bind visibility
+  document.querySelectorAll('[data-vis]').forEach(function(el){
+    el.addEventListener('change', function(){
+      var bi=+this.dataset.vis;
+      state[current].contentBlocks[bi].isVisible=this.checked;
+      var dot=document.getElementById('visdot-'+bi);
+      if(dot){ dot.classList.toggle('on',this.checked); }
+    });
+  });
+
+  initDragDrop();
+}
+
+function buildBlockHTML(b, i, settings) {
+  var deV, enV, long, tag, html='';
+
+  var contentHTML = '';
+  for (var ci=0;ci<b.content.length;ci++) {
+    var c=b.content[ci];
+    if(c.type!=='input') continue;
+    deV=c.value&&c.value.de?c.value.de:'';
+    enV=c.value&&c.value.en?c.value.en:'';
+    long=(deV.length>55||enV.length>55);
+    var varSpan=c.ampScriptVar?'<span class="field-var">'+esc(c.ampScriptVar)+'</span>':'';
+    contentHTML+='<div class="field-row"><div class="field-name">'+esc(c.label||'')+varSpan+'</div><div class="lang-grid">';
+    if(long){
+      contentHTML+='<div><span class="lang-badge">DE</span><textarea data-bi="'+i+'" data-ci="'+ci+'" data-lang="de">'+esc(deV)+'</textarea></div>';
+      contentHTML+='<div><span class="lang-badge">EN</span><textarea data-bi="'+i+'" data-ci="'+ci+'" data-lang="en">'+esc(enV)+'</textarea></div>';
+    } else {
+      contentHTML+='<div><span class="lang-badge">DE</span><input type="text" value="'+esc(deV)+'" data-bi="'+i+'" data-ci="'+ci+'" data-lang="de"></div>';
+      contentHTML+='<div><span class="lang-badge">EN</span><input type="text" value="'+esc(enV)+'" data-bi="'+i+'" data-ci="'+ci+'" data-lang="en"></div>';
+    }
+    contentHTML+='</div></div>';
+  }
+
+  var settingsHTML='';
+  if(settings.length){
+    settingsHTML='<div class="settings-block"><div class="slabel" style="margin-top:0">Settings</div>';
+    for(var si=0;si<settings.length;si++){
+      settingsHTML+='<div class="settings-row">';
+      settingsHTML+='<div><span class="lang-badge">var</span><input type="text" value="'+esc(settings[si].ampScriptVar||'')+'" data-bi="'+i+'" data-si="'+si+'" data-key="ampScriptVar"></div>';
+      settingsHTML+='<div><span class="lang-badge">value</span><input type="text" value="'+esc(settings[si].value||'')+'" data-bi="'+i+'" data-si="'+si+'" data-key="value"></div>';
+      settingsHTML+='</div>';
+    }
+    settingsHTML+='</div>';
+  }
+
+  html='<div class="block" draggable="true" data-idx="'+i+'" id="block-'+i+'">';
+  html+='<div class="block-header" data-toggle="'+i+'">';
+  html+='<div class="grip"><span></span><span></span><span></span></div>';
+  html+='<div class="block-id">'+esc(b.contentBlockId)+'</div>';
+  html+='<div class="block-type-badge">'+esc(b.type)+'</div>';
+  html+='<div class="vis-dot'+(b.isVisible?' on':'')+'" id="visdot-'+i+'"></div>';
+  html+='<div class="chevron" id="chev-'+i+'"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>';
+  html+='</div>';
+  html+='<div class="block-body" id="body-'+i+'">';
+  html+='<div class="vis-row"><input type="checkbox" id="vis-'+i+'" data-vis="'+i+'"'+(b.isVisible?' checked':'')+'><label for="vis-'+i+'">Visible</label></div>';
+  html+=contentHTML+settingsHTML;
+  html+='</div></div>';
+  return html;
+}
+
+function initDragDrop() {
+  var list=document.getElementById('blocks-list');
+  list.querySelectorAll('.block').forEach(function(el){
+    el.addEventListener('dragstart',function(e){
+      dragSrc=+el.dataset.idx;
+      setTimeout(function(){el.classList.add('dragging');},0);
+      e.dataTransfer.effectAllowed='move';
+    });
+    el.addEventListener('dragend',function(){
+      el.classList.remove('dragging');
+      list.querySelectorAll('.block').forEach(function(b){b.classList.remove('drag-over');});
+    });
+    el.addEventListener('dragover',function(e){
+      e.preventDefault();
+      list.querySelectorAll('.block').forEach(function(b){b.classList.remove('drag-over');});
+      el.classList.add('drag-over');
+    });
+    el.addEventListener('drop',function(e){
+      e.preventDefault();
+      var target=+el.dataset.idx;
+      if(dragSrc===null||dragSrc===target) return;
+      var blocks=state[current].contentBlocks;
+      var moved=blocks.splice(dragSrc,1)[0];
+      blocks.splice(target,0,moved);
+      renderEditor();
+    });
+  });
+
+  list.querySelectorAll('[data-toggle]').forEach(function(el){
+    el.addEventListener('click',function(e){
+      if(e.target.closest('.grip')) return;
+      var i=this.dataset.toggle;
+      document.getElementById('body-'+i).classList.toggle('open');
+      document.getElementById('chev-'+i).classList.toggle('open');
+    });
+  });
+}
+
+/*
+document.getElementById('gen-btn').addEventListener('click', function(){
+  var wrap=document.getElementById('output-wrap');
+  var pre=document.getElementById('output');
+  pre.textContent=JSON.stringify(state[current],null,2);
+  wrap.style.display='block';
+  wrap.scrollIntoView({behavior:'smooth',block:'nearest'});
+});
+*/
+
+document.getElementById('copy-btn').addEventListener('click', function(){
+  var text=document.getElementById('output').textContent;
+  var btn=this;
+  navigator.clipboard.writeText(text).then(function(){
+    btn.textContent='Copied!';
+    btn.classList.add('copied');
+    setTimeout(function(){btn.textContent='Copy';btn.classList.remove('copied');},1800);
+  });
+});
+
+buildTabs();
+renderEditor();
+</script>
 </body>
 </html>
