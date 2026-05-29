@@ -110,7 +110,7 @@ function saveBlockData() {
                 SET @ccbProductTitle0 = "${ blockData.productData[0].title || "" }" 
                 SET @ccbProductCopy0 = "${ blockData.productData[0].copy || "" }"
                 SET @ccbProductCta0 = "${ blockData.productData[0].cta || "" }" 
-                SET @ccbImageUrl0 = Lookup("ENT.ccbProductData", "imageUrl","isbn", "${ blockData.productData[0].isbn }")
+                SET @ccbImageUrl0 = "${ blockData.productData[0].imageSrc || "" }" 
             ]%%`
 
         let content2 = `%%[
@@ -118,7 +118,7 @@ function saveBlockData() {
                 SET @ccbProductTitle1 = "${ blockData.productData[1].title || "" }" 
                 SET @ccbProductCopy1 = "${ blockData.productData[1].copy || "" }" 
                 SET @ccbProductCta1 = "${ blockData.productData[1].cta || "" }" 
-                SET @ccbImageUrl1 = Lookup("ENT.ccbProductData", "imageUrl","isbn", "${ blockData.productData[1].isbn }")
+                SET @ccbImageUrl1 = "${ blockData.productData[1].imageSrc || "" }" 
             ]%%`
 
         let content3 = `%%[
@@ -126,7 +126,7 @@ function saveBlockData() {
                 SET @ccbProductTitle2 = "${ blockData.productData[2].title || "" }" 
                 SET @ccbProductCopy2 = "${ blockData.productData[2].copy || "" }"
                 SET @ccbProductCta2 = "${ blockData.productData[2].cta || "" }" 
-                SET @ccbImageUrl2 = Lookup("ENT.ccbProductData", "imageUrl","isbn", "${ blockData.productData[2].isbn }")
+                SET @ccbImageUrl2 = "${ blockData.productData[2].imageSrc || "" }" 
             ]%%`
 
         let content4 = `%%[
@@ -134,7 +134,7 @@ function saveBlockData() {
                 SET @ccbProductTitle3 = "${ blockData.productData[3].title || "" }" 
                 SET @ccbProductCopy3 = "${ blockData.productData[3].copy || "" }"
                 SET @ccbProductCta3 = "${ blockData.productData[3].cta || "" }" 
-                SET @ccbImageUrl3 = Lookup("ENT.ccbProductData", "imageUrl","isbn", "${ blockData.productData[3].isbn }")
+                SET @ccbImageUrl3 = "${ blockData.productData[3].imageSrc || "" }" 
             ]%%`
 
         console.log('blockdata', blockData)
