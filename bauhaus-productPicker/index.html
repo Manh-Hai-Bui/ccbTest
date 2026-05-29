@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bauhaus Product Picker</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="css/salesforce-lightning-design-system.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/common.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+    <script type="module" src="./constants.js"></script>
+</head>
+
+<body>
+    <div class="slds-page-header__row">
+        <div class="slds-page-header__col-title">
+            <div class="slds-media">
+                <div class="slds-media__figure">
+                    <img src="./images/bauhaus_144x144.png" style="width: 100%; max-width: 40px;">
+                </div>
+                <div class="slds-media__body">
+                    <div class="slds-page-header__name">
+                        <div class="slds-page-header__name-title">
+                            <h1>
+                                <span class="slds-page-header__title slds-truncate"
+                                    title="Bauhaus Product Picker">Bauhaus Product Picker</span>
+                            </h1>
+                        </div>
+                    </div>
+                    <p class="slds-page-header__name-meta">Please enter sku to retrieve product data</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <form class="form-horizontal">
+            <fieldset>
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="sku">
+                       Enter product sku</label>
+                    <div class="slds-form-element__control" id="sku-value">
+                        <div class="ma-input">
+                            <input type="text" 
+                                id="sku" 
+                                aria-describedby="form-error-01"
+                                class="slds-input"
+                                aria-invalid="true" />
+                        </div>
+                    </div>   
+                        <div id="error-div"
+                            class="slds-text-body_small 
+                                slds-text-align_left 
+                                emphasis
+                                non-error-message
+                                " >
+                        </div>        
+                        <div class="slds-text-body_small 
+                            slds-text-align_left 
+                            emphasis" >
+                                The product id is used to retrieve all product data from the product catalogue within Marketing Cloud
+                        </div>    
+                        <div class="slds-text-body_small slds-text-align_left" >
+                                <div id="sendSku" class="slds-button slds-button_brand">Send</div>
+                        </div>
+                        <div id="response-div"
+                            class="slds-text-body_small 
+                                slds-text-align_left 
+                                emphasis " >
+                        </div>   
+                </div>  
+                <hr>
+                <div class="slds-form-element js-productData" >
+                    <label class="slds-form-element__label" for="label">
+                        Product label</label>
+                    <div class="slds=form-element__control" id="label-value">
+                        <div class="ma-input">
+                            <input type="text"
+                                id="label"
+                                class="slds-input" 
+                                aria-invalid="true"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-form-element-group">
+                    <div class="slds-form-element js-productData lineSelection" >
+                        <label class="slds-form-element__label" for="productNameLines">Lines</label>
+                        <select id="productNameLines" class="slds-input">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3" selected>3</option>
+                            <option value="4">4</option>
+                          </select>
+                    </div>
+
+                    <div class="slds-form-element js-productData" >
+                        <label class="slds-form-element__label" for="productName">Product name</label>
+                        <div class="slds=form-element__control" id="productName-value">
+                            <div class="ma-input">
+                                <input type="text"
+                                    id="productName"
+                                    class="slds-input" 
+                                    aria-invalid="true"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-form-element js-productData" >
+                    <div class="slds-form-element__label" >
+                        <b>Product images</b></div>
+                    <div class="slds=form-element__control" id="productImage-value">
+
+                        <table>
+                            <tr>
+                                <td align="center" style="width: 20%; text-align: center;">
+                                    <label for="productMainImage" style="display:block;"><img class="productPreview" id="productMainImagePreview" src="./images/productPlaceholder.png" width="60" height="60"></label>
+                                    <input type="radio" id="productMainImage" name="productImage" value="" checked="">
+                                </td>
+                                <td align="center" style="width: 20%; text-align: center;">
+                                    <label for="additionalImage01" style="display:block;"><img class="productPreview" id="additionalImage01Preview" src="./images/productPlaceholder.png" width="60" height="60"></label>
+                                    <input type="radio" id="additionalImage01" name="productImage" value="">
+                                </td>
+                                <td align="center" style="width: 20%; text-align: center;">
+                                    <label for="additionalImage02" style="display:block;"><img class="productPreview" id="additionalImage02Preview" src="./images/productPlaceholder.png" width="60" height="60"></label>
+                                    <input type="radio" id="additionalImage02" name="productImage" value="">
+                                </td>
+                                <td align="center" style="width: 20%; text-align: center;">
+                                    <label for="additionalImage03" style="display:block;"><img class="productPreview" id="additionalImage03Preview" src="./images/productPlaceholder.png" width="60" height="60"></label>
+                                    <input type="radio" id="additionalImage03" name="productImage" value="">
+                                </td>
+                                <td align="center" style="width: 20%; text-align: center;">
+                                    <label for="additionalImage04" style="display:block;"><img class="productPreview" id="additionalImage04Preview" src="./images/productPlaceholder.png" width="60" height="60"></label>
+                                    <input type="radio" id="additionalImage04" name="productImage" value="">
+                                </td>
+                            </tr>
+                        </table>
+                        
+                    </div>
+                </div>
+
+                <div class="slds-form-element-group">
+                    <div class="slds-form-element js-productData lineSelection" >
+                        <label class="slds-form-element__label" for="descriptionLines">Lines</label>
+                        <select id="descriptionLines" class="slds-input">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3" selected>3</option>
+                            <option value="4">4</option>
+                          </select>
+                    </div>
+
+                    <div class="slds-form-element js-productData" >
+                        <label class="slds-form-element__label" for="description">Description</label>
+                        <div class="slds=form-element__control" id="description-value">
+                            <div class="ma-input">
+                                <input type="text" id="description" class="slds-input" aria-invalid="true"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slds-form-element js-productData" >
+                    <label class="slds-form-element__label" for="productLink">Product link</label>
+                    <div class="slds=form-element__control" id="productLink-value">
+                        <div class="ma-input">
+                            <input type="text"
+                                id="productLink"
+                                class="slds-input" 
+                                aria-invalid="true"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-form-element js-productData" >
+                    <label class="slds-form-element__label" for="usps">USPs</label>
+                    <div class="slds=form-element__control" id="usps-value">
+                        <div class="ma-input">
+                            <input type="text" id="usps" class="slds-input" aria-invalid="true"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-form-element-group">
+                    <div class="slds-form-element js-productData" >
+                        <label class="slds-form-element__label" for="brand">Brand Name</label>
+                        <div class="slds=form-element__control" id="brand-value">
+                            <div class="ma-input">
+                                <input type="text"
+                                    id="brand"
+                                    class="slds-input" 
+                                    aria-invalid="true"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-form-element js-productData" >
+                        <label class="slds-form-element__label" for="brandLogo">Brand Logo</label>
+                        <div class="slds=form-element__control" id="brandLogo-value">
+                            <div class="ma-input">
+                                <input type="text"
+                                    id="brandLogo"
+                                    class="slds-input" 
+                                    aria-invalid="true"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-form-element-group">
+                    <div class="slds-form-element js-productData" >
+                        <label class="slds-form-element__label" for="productRating">Rating</label>
+                        <div class="slds=form-element__control" id="productRating-value">
+                            <div class="ma-input">
+                                <input type="text"
+                                    id="productRating"
+                                    class="slds-input" 
+                                    aria-invalid="true"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-form-element js-productData" >
+                        <label class="slds-form-element__label" for="ratingCount">Rating Count</label>
+                        <div class="slds=form-element__control" id="ratingCount-value">
+                            <div class="ma-input">
+                                <input type="text"
+                                    id="ratingCount"
+                                    class="slds-input" 
+                                    aria-invalid="true"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="separator">
+
+                <div class="slds-form-element-group">
+                    <div class="slds-form-element js-productData" >
+                        <label class="slds-form-element__label" for="priceBgColor">Color (Price background)</label>
+                        <div class="slds-form-element__control" id="priceBgColor-value">
+                            <input type="color"
+                                id="priceBgColorPicker"
+                                class="slds-input colorPicker" 
+                                aria-invalid="true"
+                                value="#B41821"/>
+
+                            <input type="text"
+                                id="priceBgColor"
+                                class="slds-input colorText" 
+                                aria-invalid="true"
+                                value="#B41821"/>
+                        </div>
+                    </div>
+
+                    <div class="slds-form-element js-productData" >
+                        <label class="slds-form-element__label" for="priceFontColor">Color (Price font)</label>
+                        <div class="slds-form-element__control" id="priceFontColor-value">
+                            <input type="color"
+                                id="priceTextColorPicker"
+                                class="slds-input colorPicker" 
+                                aria-invalid="true"
+                                value="#FFFFFF"/>
+
+                            <input type="text"
+                                id="priceFontColor"
+                                class="slds-input colorText" 
+                                aria-invalid="true"
+                                value="#FFFFFF"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-form-element-group">
+                    <div class="slds-form-element js-productData" >
+                        <label class="slds-form-element__label" for="price">Price (Euro)</label>
+                        <div class="slds-form-element__control" id="price-value">
+                            <input type="button" id="priceSwitch" class="priceSwitch" style="font-size: 20px;" value="🔄">
+                            <input type="text"
+                                id="price"
+                                class="slds-input" 
+                                aria-invalid="true"
+                                style="flex: 4;"/>
+                        </div>
+                    </div>
+
+                    <div class="slds-form-element js-productData" >
+                        <label class="slds-form-element__label" for="centPrice">Price (Cent)</label>
+                        <div class="slds=form-element__control" id="centPrice-value">
+                            <div class="ma-input">
+                                <input type="text"
+                                    id="centPrice"
+                                    class="slds-input" 
+                                    aria-invalid="true"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-form-element-group">
+                    <div class="slds-form-element js-productData" >
+                        <label class="slds-form-element__label" for="strikePrice">Strike price (Euro) </label>
+                        <div class="slds=form-element__control" id="strikePrice-value">
+                            <div class="ma-input">
+                                <input type="text"
+                                    id="strikePrice"
+                                    class="slds-input" 
+                                    aria-invalid="true"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-form-element js-productData" >
+                        <label class="slds-form-element__label" for="strikeCentPrice">Strike price (Cent) </label>
+                        <div class="slds=form-element__control" id="strikeCentPrice-value">
+                            <div class="ma-input">
+                                <input type="text"
+                                    id="strikeCentPrice"
+                                    class="slds-input" 
+                                    aria-invalid="true"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="slds-form-element js-productData" >
+                    <label class="slds-form-element__label" for="unit">Unit (per piece, per box, per m²)</label>
+                    <div class="slds=form-element__control" id="unit-value">
+                        <div class="ma-input">
+                            <input type="text"
+                                id="unit"
+                                class="slds-input" 
+                                aria-invalid="true"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-form-element js-productData" >
+                    <label class="slds-form-element__label" for="productQuantitySelect">Show product quantity prices (Großmengenpreise)</label>
+                    <div class="slds=form-element__control" id="productQuantity-value">
+                        <div class="ma-input">
+                            <input type="text" style="display:none;" id="productQuantityHeadline">
+                            <input type="text" style="display:none;" id="productQuantityJsonInput">
+                            <select name="productQuantitySelect"  id="productQuantitySelect" class="slds-input" disabled>
+                                <option value="false" selected="selected">False</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="separator">
+
+                <div class="slds-form-element js-productData" >
+                    <label class="slds-form-element__label" for="energyLabelClass">Energy efficiency label</label>
+                    <div class="slds=form-element__control" id="energyLabelClass-value">
+                        <div class="ma-input">
+                            <input type="text" id="energyLabelClass" class="slds-input" aria-invalid="true"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-form-element js-productData" >
+                    <label class="slds-form-element__label" for="energyLabelImage">Energy label image</label>
+                    <div class="slds=form-element__control" id="energyLabelImage-value">
+                        <div class="ma-input">
+                            <input type="text" id="energyLabelImage" class="slds-input" aria-invalid="true"/>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+</div>
+    <script src="./constants.js"></script>
+    <script src="./frontEnd.js"></script>
+    <script src="./blocksdk.js"></script>
+    <script src="./mainApp.js"></script>
+    <script >
+        const sendSku = document.getElementById('sendSku');
+        sendSku.addEventListener('click', (e) => {
+            const mySku = document.getElementById('sku').value;
+            let productJSON = product0;
+
+            if(mySku == 1){
+                product = product1
+            } else if (mySku == 2){
+                product = product2
+            } else if (mySku == 3){
+                product = product3
+            } 
+
+            getProductData(product);
+            saveData();
+        });
+
+        const colorPriceBgPicker = document.querySelector('#priceBgColorPicker');
+        const colorPriceTextPicker = document.querySelector('#priceTextColorPicker');
+        const colorPriceBgInput = document.querySelector('#priceBgColor');
+        const colorPriceTextInput = document.querySelector('#priceFontColor');
+
+        colorPriceBgPicker.addEventListener('change', (element) => {
+            colorPriceBgInput.value = element.target?.value.toUpperCase() || "#B41821";
+            saveData();
+        })
+
+        colorPriceBgInput.addEventListener('change', (element) => {
+            let colorValue = element.target.value;
+            if(colorValue && /^#[0-9A-F]{6}$/i.test(colorValue)){
+                colorPriceBgPicker.value = colorValue.toUpperCase() || "#B41821";
+            } else {
+                element.target.value = colorPriceBgPicker.value.toUpperCase();
+            }
+        })
+
+        colorPriceTextPicker.addEventListener('change', (element) => {
+            colorPriceTextInput.value = element.target?.value.toUpperCase() || "#FFFFFF";
+            saveData();
+        })
+
+        colorPriceTextInput.addEventListener('change', (element) => {
+            let colorValue = element.target.value;
+            if(colorValue && /^#[0-9A-F]{6}$/i.test(colorValue)){
+                colorPriceTextPicker.value = colorValue.toUpperCase() || "#FFFFFF";
+            } else {
+                element.target.value = colorPriceTextPicker.value.toUpperCase();
+            }
+        })
+        
+        const priceSwitchBtn = document.querySelector('#priceSwitch');
+        const priceInput = document.querySelector('#price');
+        const centPriceInput = document.querySelector('#centPrice');
+        const unitInput = document.querySelector('#unit');
+        priceSwitchBtn.addEventListener('click', (element) => {
+            let priceJsonString = element.target?.dataset?.prices;
+            let priceJson = JSON.parse(priceJsonString);
+
+            if(!priceJson) { return; }
+            if(priceJson.euroPrice == priceInput.value 
+            && priceJson.centPrice == centPriceInput.value
+            && priceJson.unitString == unitInput.value){
+                priceInput.value = priceJson.euroPrice_alt;
+                centPriceInput.value = priceJson.centPrice_alt;
+                unitInput.value = priceJson.unitString_alt;
+            } else {
+                priceInput.value = priceJson.euroPrice;
+                centPriceInput.value = priceJson.centPrice;
+                unitInput.value = priceJson.unitString;
+            }
+            saveData();  
+        })
+
+    </script>
+</body>
+
+</html>
