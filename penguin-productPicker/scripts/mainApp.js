@@ -141,7 +141,7 @@ function saveBlockData() {
 
         if (blockData.module == "duo_layout"){
             content += content2
-            content += "%%=ContentBlockById('89776')=%%"
+            content += "%%=ContentBlockByKey('haiCCB3_module2')=%%"
             
         }
 
@@ -149,11 +149,11 @@ function saveBlockData() {
             content += content2
             content += content3
             content += content4
-            content += `%%=ContentBlockById('35690')=%%`
+            content += `%%=ContentBlockByKey('haiCCB3_module3')=%%`
         }
 
         if (blockData.module == "cover_image"){
-            content += "%%=ContentBlockById('35856')=%%"
+            content += "%%=ContentBlockByKey('haiCCB3_module1')=%%"
         }
 
         if (blockData.module == "layout_recommendation"){

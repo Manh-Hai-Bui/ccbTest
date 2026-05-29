@@ -1,0 +1,53 @@
+<!-- ======= start article ======= -->
+<table cellpadding="0" cellspacing="0" class="stylingblock-content-wrapper" role="presentation" style="background-color: #fff; min-width: 100%; " width="100%">
+   <tr>
+      <td class="stylingblock-content-wrapper camarker-inner" style="padding: 0px 20px 10px; ">
+         <table cellpadding="0" cellspacing="0" role="presentation" style="width: 100%;">
+            <tr>
+               <td>
+                  <table cellpadding="0" cellspacing="0" role="presentation" style="width: 100%;">
+                     <tr>
+                        <td class="responsive-td" style="width: 50%; padding-right: 10px;" valign="bottom">
+                           <table cellpadding="0" cellspacing="0" class="stylingblock-content-wrapper" role="presentation" style="min-width: 100%; " width="100%">
+                              <tr>
+                                 <td class="stylingblock-content-wrapper camarker-inner">
+                                    <table align="center" border="0" cellpadding="0" cellspacing="0" style="border-spacing:0;max-width:600px;" width="100%">
+                                       <tr>
+                                          <td valign="bottom" align="center" style="padding-bottom:20px;padding-left:0;padding-right:10px; padding-top: 0;" width="50%">
+                                             <a alias="" conversion="false" data-linkto="https://" href="%%=RedirectTo(@ccbProductUrl0)=%%" style="text-decoration:none;" title=""><img alt="4colImage1" src="%%=v(@ccbImageUrl0)=%%" style="display: block; padding: 0px; height: auto; width: 100%; max-width: 270px; text-align: center; border: 0px;" width="125"></a>
+                                          </td>
+                                          <td valign="bottom" align="center" style="padding-bottom:20px;padding-left:10px;padding-right:0; padding-top: 0;" width="50%">
+                                             <a alias="" conversion="false" data-linkto="https://" href="%%=RedirectTo(@ccbProductUrl1)=%%" style="text-decoration:none;" title=""><img alt="4colImage1" src="%%=v(@ccbImageUrl1)=%%" style="display: block; padding: 0px; height: auto; width: 100%; max-width: 270px; text-align: center; border: 0px;" width="125"></a>
+                                          </td>
+                                       </tr>
+                                    </table>
+                                 </td>
+                              </tr>
+                           </table>
+                        </td>
+                        <td class="responsive-td" style="width: 50%; padding-left: 10px;" valign="bottom">
+                           <table cellpadding="0" cellspacing="0" class="stylingblock-content-wrapper" role="presentation" style="min-width: 100%; " width="100%">
+                              <tr>
+                                 <td class="stylingblock-content-wrapper camarker-inner">
+                                    <table align="center" border="0" cellpadding="0" cellspacing="0" style="border-spacing:0;max-width:600px;" width="100%">
+                                       <tr>
+                                          <td valign="bottom" align="center" style="padding-bottom:20px;padding-left:0;padding-right:10px; padding-top: 0;" width="50%">
+                                             <a alias="" conversion="false" data-linkto="https://" href="%%=RedirectTo(@ccbProductUrl2)=%%" style="text-decoration:none;" title=""><img alt="4colImage3" src="%%=v(@ccbImageUrl2)=%%" style="display: block; padding: 0px; height: auto; width: 100%; max-width: 270px; text-align: center; border: 0px;" width="125"></a>
+                                          </td>
+                                          <td valign="bottom" align="center" style="padding-bottom:20px;padding-left:10px;padding-right:0; padding-top: 0;" width="50%">
+                                             <a alias="" conversion="false" data-linkto="https://" href="%%=RedirectTo(@ccbProductUrl3)=%%" style="text-decoration:none;" title=""><img alt="4colImage4" src="%%=v(@ccbImageUrl3)=%%" style="display: block; padding: 0px; height: auto; width: 100%; max-width: 270px; text-align: center; border: 0px;" width="125"></a>
+                                          </td>
+                                       </tr>
+                                    </table>
+                                 </td>
+                              </tr>
+                           </table>
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+         </table>
+      </td>
+   </tr>
+</table>

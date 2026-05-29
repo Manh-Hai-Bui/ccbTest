@@ -1,0 +1,5 @@
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+ 
+  <tr>
+   <td align="center" style="padding-top:10px;padding-bottom:20px;">
+    <a href="%%=RedirectTo(@ccbProductUrl0)=%%"><img alt="" border="0" height="auto" src="%%=v(@ccbImageUrl0)=%%" style="height: auto; max-width: 260px; border: 0px;" width="260"></a></td></tr></table>
