@@ -1,7 +1,7 @@
 let sdk = new window.sfdc.BlockSDK({
 tabs: [{
     key : "key",
-    name : "name",
+    name : "User Interface",
     url : "https://manh-hai-bui.github.io/ccbTest/ui/"
 }]
 ,blockEditorWidth: 425
