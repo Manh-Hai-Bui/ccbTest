@@ -127,7 +127,7 @@ pre#output{background:var(--surface2);border:1px solid var(--border);border-radi
       },
       {
         "contentBlockId":"bodyText_Demo","contentBlockKey":"bodyText_Demo","type":"text","isVisible":true,
-        "content":[{"type":"input","label":"Text","ampScriptVar":"bodyText","value":{"de":"Berlin ist die Hauptstadt und ein Land der Bundesrepublik Deutschland. Die Großstadt ist mit rund 3,7 Millionen Einwohnern die bevölkerungsreichste und mit 891 Quadratkilometern die flächengrößte Gemeinde Deutschlands sowie die bevölkerungsreichste Stadt der Europäischen Union. In der Agglomeration Berlin leben mehr als 4,7 Millionen Menschen und in der Metropolregion Berlin-Brandenburg mehr als 6,2 Millionen. Der Stadtstaat besteht aus zwölf Bezirken. Neben den Flüssen Spree, Havel und Dahme befinden sich im Stadtgebiet kleinere Fließgewässer sowie zahlreiche Seen und Wälder.","en":"Berlin is the capital and a state of the Federal Republic of Germany. With a population of approximately 3.7 million, it is Germany’s most populous municipality; with an area of 891 square kilometers, it is also Germany's largest municipality by land area, as well as the most populous city in the European Union. More than 4.7 million people live in the Berlin metropolitan area, and more than 6.2 million in the Berlin-Brandenburg metropolitan region. The city-state consists of twelve districts."}}],
+        "content":[{"type":"input","label":"Text","ampScriptVar":"bodyText","value":{"de":"Berlin ist die Hauptstadt und ein Land der Bundesrepublik Deutschland. Die Großstadt ist mit rund 3,7 Millionen Einwohnern die bevölkerungsreichste und mit 891 Quadratkilometern die flächengrößte Gemeinde Deutschlands sowie die bevölkerungsreichste Stadt der Europäischen Union. In der Agglomeration Berlin leben mehr als 4,7 Millionen Menschen und in der Metropolregion Berlin-Brandenburg mehr als 6,2 Millionen. Der Stadtstaat besteht aus zwölf Bezirken. Neben den Flüssen Spree, Havel und Dahme befinden sich im Stadtgebiet kleinere Fließgewässer sowie zahlreiche Seen und Wälder.","en":"Berlin is the capital and a state of the Federal Republic of Germany. With a population of approximately 3.7 million, it is Germany’s most populous municipality; with an area of 891 square kilometers, it is also Germany´s largest municipality by land area, as well as the most populous city in the European Union. More than 4.7 million people live in the Berlin metropolitan area, and more than 6.2 million in the Berlin-Brandenburg metropolitan region. The city-state consists of twelve districts."}}],
         "settings":[]
       },
       {
@@ -387,11 +387,21 @@ document.getElementById('gen-btn').addEventListener('click', function(){
 document.getElementById('copy-btn').addEventListener('click', function(){
   var text=document.getElementById('output').textContent;
   var btn=this;
+
   navigator.clipboard.writeText(text).then(function(){
     btn.textContent='Copied!';
     btn.classList.add('copied');
     setTimeout(function(){btn.textContent='Copy';btn.classList.remove('copied');},1800);
   });
+
+  const inputValue = document.querySelector('#output').value;
+  if(inputValue){
+      json = inputValue;
+  } 
+
+  sdk.setSuperContent(`${JSON.stringify(json, null, 2)}`)
+  sdk.setContent(`%%[ SET @JsonData = '${JSON.stringify(json, null, 2)}' ]%% %%=ContentBlockByKey('haiCCB_jsonToHeaderConfigurator')=%% %%=ContentBlockByKey('haiCCB_jsonToEmailConfigurator')=%%`)
+
 });
 
 buildTabs();
