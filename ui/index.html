@@ -1,24 +1,3 @@
-<!--
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="../scripts/json.js" defer></script>
-    <script src="../scripts/blocksdk.js" defer></script>
-    <script src="./ui_script.js" defer></script>
-    <link rel="stylesheet" href="../css/styles.css">
-</head>
-<body>
-    <label for="contentIdInput">Enter content id:</label>
-    <input id="contentIdInput" type="text">
-    <button id="sendButton">Send</button>
-    <span>C1</span>
-</body>
-</html>
-
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -374,15 +353,24 @@ function initDragDrop() {
   });
 }
 
-/*
+
 document.getElementById('gen-btn').addEventListener('click', function(){
-  var wrap=document.getElementById('output-wrap');
+  /*var wrap=document.getElementById('output-wrap');
   var pre=document.getElementById('output');
   pre.textContent=JSON.stringify(state[current],null,2);
   wrap.style.display='block';
-  wrap.scrollIntoView({behavior:'smooth',block:'nearest'});
+  wrap.scrollIntoView({behavior:'smooth',block:'nearest'});*/
+
+  const inputValue = document.querySelector('#output').value;
+  if(inputValue){
+      json = inputValue;
+  } 
+
+  sdk.setSuperContent(`${JSON.stringify(json, null, 2)}`)
+  sdk.setContent(`%%[ SET @JsonData = '${JSON.stringify(json, null, 2)}' ]%% %%=ContentBlockByKey('haiCCB_jsonToHeaderConfigurator')=%% %%=ContentBlockByKey('haiCCB_jsonToEmailConfigurator')=%%`)
+
 });
-*/
+
 
 document.getElementById('copy-btn').addEventListener('click', function(){
   var text=document.getElementById('output').textContent;
@@ -393,15 +381,6 @@ document.getElementById('copy-btn').addEventListener('click', function(){
     btn.classList.add('copied');
     setTimeout(function(){btn.textContent='Copy';btn.classList.remove('copied');},1800);
   });
-
-  const inputValue = document.querySelector('#output').value;
-  if(inputValue){
-      json = inputValue;
-  } 
-
-  sdk.setSuperContent(`${JSON.stringify(json, null, 2)}`)
-  sdk.setContent(`%%[ SET @JsonData = '${JSON.stringify(json, null, 2)}' ]%% %%=ContentBlockByKey('haiCCB_jsonToHeaderConfigurator')=%% %%=ContentBlockByKey('haiCCB_jsonToEmailConfigurator')=%%`)
-
 });
 
 buildTabs();
