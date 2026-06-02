@@ -3,7 +3,7 @@ tabs: [/* */]
 ,blockEditorWidth: 425
 });
 
-document.getElementById('gen-btn').addEventListener('click', function(){
+/*document.getElementById('gen-btn').addEventListener('click', function(){
   var wrap=document.getElementById('output-wrap');
   var pre=document.getElementById('output');
   pre.textContent=JSON.stringify(state[current],null,2);
@@ -13,7 +13,7 @@ document.getElementById('gen-btn').addEventListener('click', function(){
   sdk.setSuperContent(`${JSON.stringify(state[current],null,2)}`)
   sdk.setContent(`%%[ SET @JsonData = '${JSON.stringify(state[current],null,2)}' ]%%`)
 
-});
+});*/
 
 console.log('Testing block')
 

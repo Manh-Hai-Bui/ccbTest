@@ -355,19 +355,19 @@ function initDragDrop() {
 
 
 document.getElementById('gen-btn').addEventListener('click', function(){
-  /*var wrap=document.getElementById('output-wrap');
+  var wrap=document.getElementById('output-wrap');
   var pre=document.getElementById('output');
   pre.textContent=JSON.stringify(state[current],null,2);
   wrap.style.display='block';
-  wrap.scrollIntoView({behavior:'smooth',block:'nearest'});*/
+  wrap.scrollIntoView({behavior:'smooth',block:'nearest'});
 
   const inputValue = document.querySelector('#output').value;
   if(inputValue){
-      json = inputValue;
-  } 
+      let json = inputValue;
 
-  sdk.setSuperContent(`${JSON.stringify(json, null, 2)}`)
-  sdk.setContent(`%%[ SET @JsonData = '${JSON.stringify(json, null, 2)}' ]%% %%=ContentBlockByKey('haiCCB_jsonToHeaderConfigurator')=%% %%=ContentBlockByKey('haiCCB_jsonToEmailConfigurator')=%%`)
+      sdk.setSuperContent(`${JSON.stringify(json, null, 2)}`)
+      sdk.setContent(`%%[ SET @JsonData = '${JSON.stringify(json, null, 2)}' ]%% %%=ContentBlockByKey('haiCCB_jsonToHeaderConfigurator')=%% %%=ContentBlockByKey('haiCCB_jsonToEmailConfigurator')=%%`)
+  } 
 
 });
 

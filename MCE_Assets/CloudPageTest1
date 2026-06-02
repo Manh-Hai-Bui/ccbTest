@@ -1,3 +1,12 @@
+<!--
+
+- Create block.SDK resource
+- Test setSuperContent, setContent
+- 
+
+-->
+
+
 <span style="display:none;">%%[
   SET @ScriptOpen = Concat('<', 'script','>')
   SET @ScriptPartial = Concat('<', 'script')
