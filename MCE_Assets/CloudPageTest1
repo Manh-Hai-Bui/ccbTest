@@ -1,0 +1,89 @@
+<span style="display:none;">%%[
+  SET @ScriptOpen = Concat('<', 'script','>')
+  SET @ScriptPartial = Concat('<', 'script')
+  SET @ScriptClose = Concat('<','/','script','>')
+]%%
+</span>
+
+<script runat="server">
+
+  Platform.Load('core', '1')
+
+  var param_productid = Platform.Request.GetQueryStringParameter('productid');
+  if(param_productid){
+    Variable.SetValue("@param_productId", param_productid);
+    Variable.SetValue("@display", 'flex');
+    var productFromCatalogue = Platform.Function.LookupRows('Hai_DemoCatalogue','productId', param_productid);
+
+    if(productFromCatalogue.length > 0){
+      Variable.SetValue("@productId", productFromCatalogue[0]["productId"]);
+      Variable.SetValue("@productName", productFromCatalogue[0]["productName"]);
+      Variable.SetValue("@productImageURL", productFromCatalogue[0]["productImageURL"]);
+    }
+
+  } else {
+    Variable.SetValue("@display", 'none');
+  }
+
+</script>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    .container {
+      background-color: #a9ccd3;
+      padding: 16px;
+      border-radius: 8px;
+      margin: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+    input {
+      min-width: 80%;
+    }
+
+    }
+    
+    </style>
+</head>
+<body>
+
+    <div class="container module1">
+      <label for="productIdInput">Enter product id:</label>
+      <input id="productIdInput" type="text" value="%%=v(@param_productId)=%%">
+      <button id="sendButton">Send</button>
+      <span>V1</span>
+    </div>
+
+    <div class="container module2" style="display: %%=v(@display)=%%;">
+      <label for="test1">Test1
+        <input id="test1" type="text" value="%%=v(@param_productId)=%%">
+      </label>
+      
+      <label for="test2">Test2
+        <input id="test2" type="text" value="%%=v(@productName)=%%">
+      </label>
+
+      <label for="test3">Test3
+        <input id="test3" type="text" value="%%=v(@productImageURL)=%%">
+      </label>
+    </div>
+  
+    %%=TreatAsContent(@ScriptOpen)=%%
+
+      const sendButton = document.querySelector('#sendButton');
+      const prodid_Input = document.querySelector('#productIdInput');
+      sendButton.addEventListener('click', () => {
+        if(prodid_Input.value){
+          window.location.href = window.location.origin + window.location.pathname + "?productid=" + prodid_Input.value;
+        }
+      })
+    
+    %%=TreatAsContent(@ScriptClose)=%%
+
+    
+</body>
+</html>
