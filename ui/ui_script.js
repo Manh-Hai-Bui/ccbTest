@@ -27,7 +27,7 @@ console.log('Testing block')
   
   }, 1000);*/
 
-document.querySelector('#sendButton').addEventListener('click', (e) => {
+/*document.querySelector('#sendButton').addEventListener('click', (e) => {
     const inputValue = document.querySelector('#output').value;
     let json = newsletterJSON1;
 
@@ -37,4 +37,4 @@ document.querySelector('#sendButton').addEventListener('click', (e) => {
 
     sdk.setSuperContent(`${JSON.stringify(json, null, 2)}`)
     sdk.setContent(`%%[ SET @JsonData = '${JSON.stringify(json, null, 2)}' ]%% %%=ContentBlockByKey('haiCCB_jsonToHeaderConfigurator')=%% %%=ContentBlockByKey('haiCCB_jsonToEmailConfigurator')=%%`)
-})
+})*/
