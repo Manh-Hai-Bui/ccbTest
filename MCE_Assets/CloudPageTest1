@@ -1,15 +1,7 @@
-<!--
-
-- Create block.SDK resource
-- Test setSuperContent, setContent
-- 
-
--->
-
-
 <span style="display:none;">%%[
   SET @ScriptOpen = Concat('<', 'script','>')
-  SET @ScriptPartial = Concat('<', 'script')
+  SET @ScriptPartial = Concat('<', 'script', ' ', 'src="https://mc2xsctbllc5pw-0ck06pnh5c6g8.pub.sfmc-content.com/x5vcwtyj3bs"',' ', '>')
+  SET @ScriptBlockSDK = Concat('<', 'script')
   SET @ScriptClose = Concat('<','/','script','>')
 ]%%
 </span>
@@ -19,6 +11,9 @@
   Platform.Load('core', '1')
 
   var param_productid = Platform.Request.GetQueryStringParameter('productid');
+  var param_operation = Platform.Request.GetQueryStringParameter('operation');
+  var param_field = Platform.Request.GetQueryStringParameter('field');
+  var param_newVal = Platform.Request.GetQueryStringParameter('value');
   if(param_productid){
     Variable.SetValue("@param_productId", param_productid);
     Variable.SetValue("@display", 'flex');
@@ -29,10 +24,20 @@
       Variable.SetValue("@productName", productFromCatalogue[0]["productName"]);
       Variable.SetValue("@productImageURL", productFromCatalogue[0]["productImageURL"]);
     }
-
   } else {
     Variable.SetValue("@display", 'none');
   }
+
+  if(param_operation && param_productid && param_field && param_newVal){
+    try {
+      var res = Platform.Function.UpdateData('Hai_DemoCatalogue', ["productId"], [param_productid], [param_field], [param_newVal])
+      Variable.SetValue("@status", "Success");
+    } catch (e){
+      Variable.SetValue("@status", "Error");
+    }
+    
+  }
+
 
 </script>
 
@@ -57,8 +62,14 @@
     }
     
     </style>
+  
+  %%=TreatAsContent(@ScriptPartial)=%%
+  %%=TreatAsContent(@ScriptClose)=%%
+  
 </head>
 <body>
+
+    Status: %%=v(@status)=%%
 
     <div class="container module1">
       <label for="productIdInput">Enter product id:</label>
@@ -79,17 +90,43 @@
       <label for="test3">Test3
         <input id="test3" type="text" value="%%=v(@productImageURL)=%%">
       </label>
+      <button id="updateButton">Update</button>
     </div>
   
     %%=TreatAsContent(@ScriptOpen)=%%
 
       const sendButton = document.querySelector('#sendButton');
+      const updateButton = document.querySelector('#updateButton');
       const prodid_Input = document.querySelector('#productIdInput');
+
+      let inputVal1 = document.querySelector('#test1').value;
+      let inputVal2 = document.querySelector('#test2').value;
+      let inputVal3 = document.querySelector('#test3').value;
+
       sendButton.addEventListener('click', () => {
         if(prodid_Input.value){
           window.location.href = window.location.origin + window.location.pathname + "?productid=" + prodid_Input.value;
         }
       })
+
+      updateButton.addEventListener('click', () => {
+
+        inputVal1 = document.querySelector('#test1').value;
+        inputVal2 = document.querySelector('#test2').value;
+        inputVal3 = document.querySelector('#test3').value;
+
+        if(prodid_Input.value){
+          window.location.href = window.location.origin + window.location.pathname + "?operation=update" + "&productid=" + inputVal1 +  "&field=productName" + "&value=" + inputVal2;
+        }
+      })
+
+      let sdk = new window.sfdc.BlockSDK({
+        tabs: [/* */]
+        ,blockEditorWidth: 425
+      });
+
+      sdk.setSuperContent(`inputVal1: ${inputVal1} <br> inputVal2: ${inputVal2} <br> inputVal3: ${inputVal3} `)
+      sdk.setContent(`inputVal1: ${inputVal1} <br> inputVal2: ${inputVal2} <br> inputVal3: ${inputVal3} `)
     
     %%=TreatAsContent(@ScriptClose)=%%
 
