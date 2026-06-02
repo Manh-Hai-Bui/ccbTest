@@ -362,20 +362,9 @@ document.getElementById('gen-btn').addEventListener('click', function(){
   wrap.scrollIntoView({behavior:'smooth',block:'nearest'});
 
   console.log('Output created')
-
-  const inputValue = document.querySelector('#output').value;
-
-  console.log('input value', inputValue)
-
-  if(inputValue){
-      let json = inputValue;
-
-      console.log('inside input')
-
-      sdk.setSuperContent(`${JSON.stringify(json, null, 2)}`)
-      sdk.setContent(`%%[ SET @JsonData = '${JSON.stringify(json, null, 2)}' ]%% %%=ContentBlockByKey('haiCCB_jsonToHeaderConfigurator')=%% %%=ContentBlockByKey('haiCCB_jsonToEmailConfigurator')=%%`)
-  } 
-
+  sdk.setSuperContent(`${JSON.stringify(state[current], null, 2)}`)
+  sdk.setContent(`%%[ SET @JsonData = '${JSON.stringify(state[current], null, 2)}' ]%% %%=ContentBlockByKey('haiCCB_jsonToHeaderConfigurator')=%% %%=ContentBlockByKey('haiCCB_jsonToEmailConfigurator')=%%`)
+  
 });
 
 
