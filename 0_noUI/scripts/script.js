@@ -2,7 +2,7 @@ let sdk = new window.sfdc.BlockSDK({
 tabs: [{
     key : "key",
     name : "User Interface",
-    url : "https://manh-hai-bui.github.io/ccbTest/ui/"
+    url : "https://manh-hai-bui.github.io/ccbTest/1_UI/"
 }]
 ,blockEditorWidth: 600
 });
