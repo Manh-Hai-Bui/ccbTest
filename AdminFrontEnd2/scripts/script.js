@@ -5,6 +5,7 @@ tabs: []
 
 const input = document.querySelector('#contentIdInput');
 const button = document.querySelector('#sendButton');
+const resultArea = document.querySelector('.result');
 
 // Settings Data that will be transfered to marketing cloud
 let blockData = {
@@ -22,6 +23,7 @@ const getData = () => {
         if (Object.keys(data).length > 0) {
             let blockData = data;
             input.value = blockData.Segment
+            resultArea = JSON.stringify(blockData, null, 2);
         }
     })
 }
@@ -34,7 +36,13 @@ const saveData = () => {
 }
 
 const displaySuperContent = () => {
-    sdk.setSuperContent(`Current data: ${JSON.stringify(blockData,null,2)}`);
+    sdk.setSuperContent(`Current data: <br> 
+        marketingAction: ${blockData.marketingAction}<br>
+        Segment: ${blockData.Segment}<br>
+        EmailDesigner: ${blockData.EmailDesigner}<br>
+        SendEmail: ${blockData.SendEmail}<br>
+        Report: ${blockData.Report}
+    `);
 }
 
 /* UI Event listener */
@@ -43,7 +51,7 @@ input.addEventListener('change', () => {
     saveData();
 })
 
-input.addEventListener('click', () => {
+button.addEventListener('click', () => {
     saveData();
 })
 

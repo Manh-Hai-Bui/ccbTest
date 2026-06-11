@@ -1,0 +1,25 @@
+body {
+    display:flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 8px;
+}
+
+#headline {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+input {
+    flex: 3;
+}
+
+#sendButton {
+    flex: 1;
+}

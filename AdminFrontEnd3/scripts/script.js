@@ -1,21 +1,5 @@
 let sdk = new window.sfdc.BlockSDK({
-tabs: [{
-    key : "key",
-    name : "Report",
-    url : "https://manh-hai-bui.github.io/ccbTest/AdminFrontEnd5/"
-},{
-    key : "key",
-    name : "Send Email",
-    url : "https://manh-hai-bui.github.io/ccbTest/AdminFrontEnd4/"
-},{
-    key : "key",
-    name : "Email Designer",
-    url : "https://manh-hai-bui.github.io/ccbTest/AdminFrontEnd3/"
-},{
-    key : "key",
-    name : "Segment",
-    url : "https://manh-hai-bui.github.io/ccbTest/AdminFrontEnd2/"
-}]
+tabs: []
 ,blockEditorWidth: 423
 });
 
@@ -38,14 +22,14 @@ const getData = () => {
     sdk.getData((data) => {
         if (Object.keys(data).length > 0) {
             let blockData = data;
-            input.value = blockData.marketingAction
+            input.value = blockData.EmailDesigner
             resultArea = JSON.stringify(blockData, null, 2);
         }
     })
 }
 
 const saveData = () => {
-    blockData.marketingAction = document.getElementById('contentIdInput').value;
+    blockData.EmailDesigner = document.getElementById('contentIdInput').value;
     sdk.setData(blockData, () => {
         displaySuperContent();
     })
