@@ -1,8 +1,8 @@
 let sdk = new window.sfdc.BlockSDK({
 tabs: [{
     key : "key",
-    name : "Segment",
-    url : "https://manh-hai-bui.github.io/ccbTest/AdminFrontEnd2/"
+    name : "General",
+    url : "https://manh-hai-bui.github.io/ccbTest/AdminFrontEnd1/"
 },{
     key : "key",
     name : "Email Designer",
