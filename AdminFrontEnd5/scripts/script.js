@@ -10,10 +10,10 @@ const resultArea = document.querySelector('.result');
 // Settings Data that will be transfered to marketing cloud
 let blockData = {
     marketingAction: '',
-    Segment: '',
-    EmailDesigner: '',
-    SendEmail: '',
-    Report: ''
+    segment: '',
+    emailDesigner: '',
+    sendEmail: '',
+    report: ''
 };
 
 /* Marketing Cloud Communication  */
@@ -22,14 +22,14 @@ const getData = () => {
     sdk.getData((data) => {
         if (Object.keys(data).length > 0) {
             blockData = data;
-            input.value = blockData.Report
+            input.value = blockData.report
             resultArea.value = JSON.stringify(blockData, null, 2);
         }
     })
 }
 
 const saveData = () => {
-    blockData.Report = document.getElementById('contentIdInput').value;
+    blockData.report = document.getElementById('contentIdInput').value;
     sdk.setData(blockData, () => {
         displaySuperContent();
     })
@@ -38,10 +38,10 @@ const saveData = () => {
 const displaySuperContent = () => {
     sdk.setSuperContent(`<b>Current data:</b> <br> 
         marketingAction: ${blockData.marketingAction}<br>
-        Segment: ${blockData.Segment}<br>
-        EmailDesigner: ${blockData.EmailDesigner}<br>
-        SendEmail: ${blockData.SendEmail}<br>
-        Report: ${blockData.Report}
+        segment: ${blockData.segment}<br>
+        emailDesigner: ${blockData.emailDesigner}<br>
+        sendEmail: ${blockData.sendEmail}<br>
+        report: ${blockData.report}
     `);
 }
 

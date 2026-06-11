@@ -26,10 +26,10 @@ const resultArea = document.querySelector('.result');
 // Settings Data that will be transfered to marketing cloud
 let blockData = {
     marketingAction: '',
-    Segment: '',
-    EmailDesigner: '',
-    SendEmail: '',
-    Report: ''
+    segment: '',
+    emailDesigner: '',
+    sendEmail: '',
+    report: ''
 };
 
 /* Marketing Cloud Communication  */
@@ -55,10 +55,10 @@ const saveData = () => {
 const displaySuperContent = () => {
     sdk.setSuperContent(`<b>Current data:</b> <br> 
         marketingAction: ${blockData.marketingAction}<br>
-        Segment: ${blockData.Segment}<br>
-        EmailDesigner: ${blockData.EmailDesigner}<br>
-        SendEmail: ${blockData.SendEmail}<br>
-        Report: ${blockData.Report}
+        segment: ${blockData.segment}<br>
+        emailDesigner: ${blockData.emailDesigner}<br>
+        sendEmail: ${blockData.sendEmail}<br>
+        report: ${blockData.report}
     `);
 }
 
