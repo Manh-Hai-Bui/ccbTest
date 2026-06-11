@@ -4,7 +4,7 @@ tabs: [{
     name : "User Interface",
     url : "https://manh-hai-bui.github.io/ccbTest/ui/"
 }]
-,blockEditorWidth: 425
+,blockEditorWidth: 600
 });
 
 console.log('Testing block')

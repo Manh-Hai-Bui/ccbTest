@@ -54,11 +54,14 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
+    }
+
+    .status {
+        padding: 16px;
+    }
 
     input {
       min-width: 80%;
-    }
-
     }
     
     </style>
@@ -69,7 +72,7 @@
 </head>
 <body>
 
-    Status: %%=v(@status)=%%
+    <span class="status">Status: %%=v(@status)=%%</span>
 
     <div class="container module1">
       <label for="productIdInput">Enter product id:</label>

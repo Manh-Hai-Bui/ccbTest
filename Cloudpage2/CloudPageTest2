@@ -1,0 +1,245 @@
+<span style="display:none;">%%[
+  SET @ScriptOpen = Concat('<', 'script','>')
+  SET @ScriptPartial = Concat('<', 'script', ' ', 'src="https://mc2xsctbllc5pw-0ck06pnh5c6g8.pub.sfmc-content.com/x5vcwtyj3bs"',' ', '>')
+  SET @ScriptBlockSDK = Concat('<', 'script')
+  SET @ScriptClose = Concat('<','/','script','>')
+]%%
+</span>
+
+<script runat="server">
+
+  Platform.Load('core', '1')
+
+  var param_editor = Platform.Request.GetQueryStringParameter('editor');
+  if(param_editor){
+    Variable.SetValue("@displayGalleryClass", "hidden");
+    Variable.SetValue("@selectedEditor", param_editor);
+  } else {
+
+  }
+
+  if(param_editor && param_editor == 'ImageEditor'){
+
+    var folders = Folder.Retrieve({
+        Property: "ContentType",
+        SimpleOperator: "equals",
+        Value: "image"
+    });
+
+    Write(Stringify(folders));
+  }
+
+</script>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.28.0/styles/salesforce-lightning-design-system.min.css" integrity="sha512-yGlcH7165+gHMWfLapErhAgPK+gSZSQBtGgcO2zsJj8ASkfPh/z8k+4SZ2h+VBZLUIjzur8kktBrGbW3gcWUDQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .mainContainer {
+            padding: 16px;
+        }
+
+        .status {
+            padding-bottom: 16px;
+        }
+
+        .blockGallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0px;
+        }
+
+        .blockContainer{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .blockImage {
+            display: flex;
+            font-weight: bold;
+            font-size: 16px;
+            color: #446188;
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 8px;
+            background-color: #93b1d9;
+            transition: transform 0.2s ease;
+        }
+
+        .blockImage:hover {
+            background-color: #7794b9;
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .show {
+            display: flex !important;
+        }
+
+        button.ui-btn {
+            background-color: #ffffff !important;
+            border: 1px solid #747474 !important;
+            border-radius: 4px !important;
+            padding: 4px !important;
+            height: 32px !important;
+            width: 32px !important;
+        }
+
+        #heading-select{
+            width: 60px;
+        }
+
+    
+    </style>
+  
+  %%=TreatAsContent(@ScriptPartial)=%%
+  %%=TreatAsContent(@ScriptClose)=%%
+  
+</head>
+<body>
+
+    <div class="status">Status: %%=v(@status)=%%</div>
+
+    <div class="mainContainer">
+        <div class="blockGallery %%=v(@displayGalleryClass)=%%">
+            <div class="blockContainer">
+                <div class="blockImage" data-param="ImageEditor">IMG</div>
+                <div class="blockLabel">Image</div>
+            </div>
+
+            <div class="blockContainer">
+                <div class="blockImage" data-param="h1Editor">H1</div>
+                <div class="blockLabel">Headline</div>
+            </div>
+
+            <div class="blockContainer">
+                <div class="blockImage" data-param="textEditor">TXT</div>
+                <div class="blockLabel">Text</div>
+            </div>
+
+            <div class="blockContainer">
+                <div class="blockImage" data-param="separatorEditor">—</div>
+                <div class="blockLabel">Separator</div>
+            </div>
+        </div>
+
+        <div id="ImageEditor" class="hidden">ImageEditor</div>
+        <div id="h1Editor" class="hidden">
+            <div class="editor-container">
+                <h1 class="slds-text-heading_large slds-m-bottom_medium">H1 Editor</h1>      
+                <div class="slds-form-element">
+
+                    <div class="custom-select_container" style="width: 100%; padding-bottom: 16px;">
+                        <select id="heading-select" class="slds-select" aria-label="Heading level" style="padding-right: 8px;">
+                            <option value="div">Body</option>
+                            <option value="h1">H1</option>
+                            <option value="h2">H2</option>
+                            <option value="h3">H3</option>
+                            <option value="h4">H4</option>
+                        </select>
+
+                        <button class="ui-btn" data-alignment="left">
+                            <i class="fa-solid fa-align-left"></i>
+                        </button>
+
+                        <button class="ui-btn" data-alignment="center">
+                            <i class="fa-solid fa-align-center"></i>
+                        </button>
+
+                        <button class="ui-btn" data-alignment="right">
+                            <i class="fa-solid fa-align-right"></i>
+                        </button>
+                
+                    </div>
+
+                    <div class="slds-form-element__control">
+                        <input
+                            type="text"
+                            id="editor-input"
+                            class="slds-input"
+                            placeholder="Start typing…"
+                            autocomplete="off"
+                            spellcheck="true"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="textEditor" class="hidden">textEditor</div>
+        <div id="separatorEditor" class="hidden">Separator</div>
+    </div>
+  
+    %%=TreatAsContent(@ScriptOpen)=%%
+
+        document.querySelectorAll('.blockImage').forEach( elem => {
+            elem.addEventListener('click', (e) => {
+                console.log(e.target.dataset.param);
+                window.location.href = window.location.origin + window.location.pathname + "?editor=" + e.target.dataset.param;
+            })
+        })
+
+        let selectedEditor = "%%=v(@selectedEditor)=%%";
+        if (selectedEditor){
+            document.querySelector('#%%=v(@selectedEditor)=%%').classList.remove('hidden');
+        }
+    
+        let sdk = new window.sfdc.BlockSDK({
+        tabs: [/* */]
+        ,blockEditorWidth: 425
+        });
+
+        let alignment = "left";
+        let tag = "div";
+
+        document.getElementById('editor-input').addEventListener('input', function () {
+            updateSuperContent();
+        });
+
+        document.querySelector('#heading-select').addEventListener('change', (e) => {
+            tag = e.target.value;
+            updateSuperContent();
+        });
+
+        document.querySelectorAll('.ui-btn').forEach( elem => {
+            elem.addEventListener('click', function () {
+                alignment = this.dataset.alignment;
+                console.log('alignment');
+                updateSuperContent()
+            });
+        })
+
+        function updateSuperContent(){
+            let val = document.getElementById('editor-input').value;
+            sdk.setSuperContent(`<${tag} style="font-family: sans-serif; text-align:${alignment};">${val}</${tag}>`)
+        }
+
+
+
+        //sdk.setSuperContent(` `)
+        //sdk.setContent(` `)
+    
+    %%=TreatAsContent(@ScriptClose)=%%
+
+    
+</body>
+</html>
