@@ -23,7 +23,7 @@ const getData = () => {
         if (Object.keys(data).length > 0) {
             let blockData = data;
             input.value = blockData.Segment
-            resultArea = JSON.stringify(blockData, null, 2);
+            resultArea.value = JSON.stringify(blockData, null, 2);
         }
     })
 }
@@ -36,7 +36,7 @@ const saveData = () => {
 }
 
 const displaySuperContent = () => {
-    sdk.setSuperContent(`Current data: <br> 
+    sdk.setSuperContent(`<b>Current data:</b> <br> 
         marketingAction: ${blockData.marketingAction}<br>
         Segment: ${blockData.Segment}<br>
         EmailDesigner: ${blockData.EmailDesigner}<br>

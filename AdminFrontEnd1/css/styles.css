@@ -5,7 +5,7 @@ body {
     padding: 8px;
 }
 
-#headline {
+#headline, .data {
     font-family: Arial, sans-serif;
     font-weight: bold;
 }
@@ -23,3 +23,4 @@ input {
 #sendButton {
     flex: 1;
 }
+

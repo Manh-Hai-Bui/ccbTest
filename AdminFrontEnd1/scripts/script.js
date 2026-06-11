@@ -1,20 +1,20 @@
 let sdk = new window.sfdc.BlockSDK({
 tabs: [{
-    key : "key",
-    name : "Report",
-    url : "https://manh-hai-bui.github.io/ccbTest/AdminFrontEnd5/"
+    key : "1",
+    name : "Segment",
+    url : "https://manh-hai-bui.github.io/ccbTest/AdminFrontEnd2/"
 },{
-    key : "key",
-    name : "Send Email",
-    url : "https://manh-hai-bui.github.io/ccbTest/AdminFrontEnd4/"
-},{
-    key : "key",
+    key : "2",
     name : "Email Designer",
     url : "https://manh-hai-bui.github.io/ccbTest/AdminFrontEnd3/"
 },{
-    key : "key",
-    name : "Segment",
-    url : "https://manh-hai-bui.github.io/ccbTest/AdminFrontEnd2/"
+    key : "3",
+    name : "Send Email",
+    url : "https://manh-hai-bui.github.io/ccbTest/AdminFrontEnd4/"
+},{
+    key : "4",
+    name : "Report",
+    url : "https://manh-hai-bui.github.io/ccbTest/AdminFrontEnd5/"
 }]
 ,blockEditorWidth: 423
 });
@@ -39,7 +39,7 @@ const getData = () => {
         if (Object.keys(data).length > 0) {
             let blockData = data;
             input.value = blockData.marketingAction
-            resultArea = JSON.stringify(blockData, null, 2);
+            resultArea.value = JSON.stringify(blockData, null, 2);
         }
     })
 }
