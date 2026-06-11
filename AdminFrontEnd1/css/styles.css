@@ -24,3 +24,7 @@ input {
     flex: 1;
 }
 
+.result {
+    height: 132px;
+}
+

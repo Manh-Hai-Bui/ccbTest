@@ -23,3 +23,7 @@ input {
 #sendButton {
     flex: 1;
 }
+
+.result {
+    height: 132px;
+}

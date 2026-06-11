@@ -37,7 +37,7 @@ let blockData = {
 const getData = () => {
     sdk.getData((data) => {
         if (Object.keys(data).length > 0) {
-            let blockData = data;
+            blockData = data;
             input.value = blockData.marketingAction
             resultArea.value = JSON.stringify(blockData, null, 2);
         }
