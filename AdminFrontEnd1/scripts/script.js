@@ -38,7 +38,8 @@ const getData = () => {
     sdk.getData((data) => {
         if (Object.keys(data).length > 0) {
             blockData = data;
-            input.value = blockData.marketingAction
+            console.log('getdata() -> data', data);
+            input.value = blockData.marketingAction;
             resultArea.value = JSON.stringify(blockData, null, 2);
         }
     })
@@ -52,7 +53,7 @@ const saveData = () => {
 }
 
 const displaySuperContent = () => {
-    sdk.setSuperContent(`Current data: <br> 
+    sdk.setSuperContent(`<b>Current data:</b> <br> 
         marketingAction: ${blockData.marketingAction}<br>
         Segment: ${blockData.Segment}<br>
         EmailDesigner: ${blockData.EmailDesigner}<br>
