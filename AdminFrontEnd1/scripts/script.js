@@ -1,23 +1,23 @@
 let sdk = new window.sfdc.BlockSDK({
 tabs: [{
     key : "key",
-    name : "User Interface",
-    url : "https://manh-hai-bui.github.io/ccbTest/1_UI/"
+    name : "Segment",
+    url : "https://manh-hai-bui.github.io/ccbTest/AdminFrontEnd2/"
+},{
+    key : "key",
+    name : "Email Designer",
+    url : "https://manh-hai-bui.github.io/ccbTest/AdminFrontEnd3/"
+},{
+    key : "key",
+    name : "Send Email",
+    url : "https://manh-hai-bui.github.io/ccbTest/AdminFrontEnd4/"
+},{
+    key : "key",
+    name : "Report",
+    url : "https://manh-hai-bui.github.io/ccbTest/AdminFrontEnd5/"
 }]
 ,blockEditorWidth: 423
 });
-
-console.log('Testing block')
-
-/*setTimeout(()=>{
-  
-  sdk.setSuperContent(`${JSON.stringify(newsletterJSON1, null, 2)}`)
-  console.log('Setting supercontent')
-
-  sdk.setContent(`%%[ SET @JsonData = '${JSON.stringify(newsletterJSON1, null, 2)}' ]%%`)
-  console.log('Setting setContent')
-  
-  }, 1000);*/
 
 document.querySelector('#sendButton').addEventListener('click', (e) => {
     const inputValue = document.querySelector('#contentIdInput').value;
