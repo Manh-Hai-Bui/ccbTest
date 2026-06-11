@@ -63,7 +63,7 @@ const displaySuperContent = () => {
 
 /* UI Event listener */
 
-input.addEventListener('change', () => {
+input.addEventListener('input', () => {
     saveData();
 })
 
