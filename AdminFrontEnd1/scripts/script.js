@@ -50,7 +50,7 @@ const getData = () => {
             blockData = data;
             console.log('getdata() -> data', data);
             input.value = blockData.marketingAction;
-            resultArea.value = JSON.stringify(blockData, null, 2);
+            resultArea.value = JSON.stringify(blockData, null, 2); // Optional to displa current settings data 
             displaySuperContent();
         }
     })
@@ -60,10 +60,9 @@ const saveData = () => {
     blockData.marketingAction = document.getElementById('contentIdInput').value;
     sdk.setData(blockData, () => {
         displaySuperContent();
+        resultArea.value = JSON.stringify(blockData, null, 2); // Optional to displa current settings data 
     })
 }
-
-
 
 /* UI Event listener */
 
