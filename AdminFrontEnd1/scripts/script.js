@@ -34,6 +34,16 @@ let blockData = {
 
 /* Marketing Cloud Communication  */
 
+const displaySuperContent = () => {
+    sdk.setSuperContent(`<b>Current data:</b> <br> 
+        marketingAction: ${blockData.marketingAction}<br>
+        segment: ${blockData.segment}<br>
+        emailDesigner: ${blockData.emailDesigner}<br>
+        sendEmail: ${blockData.sendEmail}<br>
+        report: ${blockData.report}
+    `);
+}
+
 const getData = () => {
     sdk.getData((data) => {
         if (Object.keys(data).length > 0) {
@@ -41,6 +51,7 @@ const getData = () => {
             console.log('getdata() -> data', data);
             input.value = blockData.marketingAction;
             resultArea.value = JSON.stringify(blockData, null, 2);
+            displaySuperContent();
         }
     })
 }
@@ -52,15 +63,7 @@ const saveData = () => {
     })
 }
 
-const displaySuperContent = () => {
-    sdk.setSuperContent(`<b>Current data:</b> <br> 
-        marketingAction: ${blockData.marketingAction}<br>
-        segment: ${blockData.segment}<br>
-        emailDesigner: ${blockData.emailDesigner}<br>
-        sendEmail: ${blockData.sendEmail}<br>
-        report: ${blockData.report}
-    `);
-}
+
 
 /* UI Event listener */
 
@@ -75,4 +78,3 @@ button.addEventListener('click', () => {
 /* Initialize */
 
 getData();
-displaySuperContent();
