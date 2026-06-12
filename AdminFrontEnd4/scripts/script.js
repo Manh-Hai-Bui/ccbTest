@@ -44,6 +44,7 @@ const saveData = () => {
     blockData.sendEmail = document.getElementById('contentIdInput').value;
     sdk.setData(blockData, () => {
         displaySuperContent();
+        resultArea.value = JSON.stringify(blockData, null, 2); // Optional to displa current settings data 
     })
 }
 

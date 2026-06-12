@@ -43,6 +43,7 @@ const getData = () => {
 const saveData = () => {
     blockData.segment = document.getElementById('contentIdInput').value;
     sdk.setData(blockData, () => {
+        resultArea.value = JSON.stringify(blockData, null, 2); // Optional to displa current settings data 
         displaySuperContent();
     })
 }
